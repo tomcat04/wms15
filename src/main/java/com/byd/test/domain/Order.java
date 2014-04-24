@@ -6,6 +6,8 @@
 
 package com.byd.test.domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author cgx1844568
@@ -13,8 +15,10 @@ package com.byd.test.domain;
  * @time 10:08:34
  *
  */
-public class Order {
+public class Order implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     private String orderId;
 
     public String getOrderId() {

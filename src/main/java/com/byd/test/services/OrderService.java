@@ -6,6 +6,9 @@
 
 package com.byd.test.services;
 
+import com.byd.test.domain.Order;
+import com.byd.test.mapper.OrderMapper;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,9 +18,22 @@ import org.springframework.stereotype.Service;
  * @time 10:11:24
  *
  */
-//@Service
+@Service
 public class OrderService {
+    @Resource
+    private OrderMapper orderMapper;
+
+    public OrderMapper getOrderMapper() {
+        return orderMapper;
+    }
+
+    public void setOrderMapper(OrderMapper orderMapper) {
+        this.orderMapper = orderMapper;
+    }
+
     public void test(){
+        Order order= orderMapper.getOrderByOrderId("20");
+        System.out.println("order :  " + order.getPrice());
         System.out.println("OrderService.test");
     }
 

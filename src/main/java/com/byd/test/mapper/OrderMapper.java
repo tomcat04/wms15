@@ -6,6 +6,8 @@
 
 package com.byd.test.mapper;
 
+import com.byd.test.domain.Order;
+
 /**
  *
  * @author cgx1844568
@@ -13,6 +15,6 @@ package com.byd.test.mapper;
  * @time 10:38:16
  *
  */
-public class OrderMapper {
-
+public interface OrderMapper {
+    Order getOrderByOrderId(String orderId);
 }
