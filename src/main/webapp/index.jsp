@@ -15,6 +15,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <c:redirect url="/app/index/helloWorld" />
+        <c:redirect url="/app/index/helloworld" />
     </body>
 </html>

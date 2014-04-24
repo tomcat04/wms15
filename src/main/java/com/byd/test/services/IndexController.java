@@ -22,6 +22,7 @@ public class IndexController {
     
     @RequestMapping("helloworld")
     public String helloworld(){
-        return "index";
+        System.out.println("lalalallalaallalahahhahahahhawawawaawawawawa");
+        return "success";
     }
 }
