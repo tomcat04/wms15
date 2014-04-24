@@ -1,0 +1,6 @@
+配置信息在WEB-INF/applicationContext.xml下
+
+CREATE TABLE TEST_ORDER(
+order_id VARCHAR2(255) PRIMARY KEY,
+price VARCHAR2(255)
+)
