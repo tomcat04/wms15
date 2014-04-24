@@ -34,6 +34,9 @@
   <select id = "selectAllOrder" resultType = "Order">
       select order_id as orderId , price from test_order
   </select>
+  <update id = "updateOrderByOrderId" parameterType = "Order">
+      update test_order set price = #{price} where order_id = #{orderId}
+  </update>
 <!--  <select id = "selectOrderByPaging" parameterType = "java.util.HashMap" resultType = "Order">
       
       select order_id as orderId , price from(

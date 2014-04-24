@@ -23,4 +23,5 @@ public interface OrderMapper {
     void deleteOrderByOrderId(String orderId);
     List<Order> selectAllOrder();
     List<Order> selectOrderByPaging(Map map);
+    void updateOrderByOrderId(Order order);
 }
