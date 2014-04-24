@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 
-package com.byd.test.services;
+package com.byd.test.actions;
 
+import com.byd.test.services.OrderService;
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,11 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("index")
-public class IndexController {
+public class OrderAction {
     
+    @Resource
+    private OrderService orderService;
+
     @RequestMapping("helloworld")
     public String helloworld(){
+        
         System.out.println("lalalallalaallalahahhahahahhawawawaawawawawa");
+        orderService.test();
+        System.out.println("ioioioioioioiioiioioioiioioioioioioioioioio");
         return "success";
     }
 }
