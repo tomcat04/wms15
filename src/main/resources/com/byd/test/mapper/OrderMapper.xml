@@ -25,4 +25,22 @@
     SELECT order_id as orderId,price FROM test_order
     WHERE order_id = #{orderId}
   </select>
+  <insert id = "insertOrder" parameterType= "Order">
+      insert into test_order values(#{orderId},#{price})
+  </insert>
+  <delete id = "deleteOrderByOrderId" parameterType = "String">
+      delete from test_order where order_id = #{orderId}
+  </delete>
+  <select id = "selectAllOrder" resultType = "Order">
+      select order_id as orderId , price from test_order
+  </select>
+<!--  <select id = "selectOrderByPaging" parameterType = "java.util.HashMap" resultType = "Order">
+      
+      select order_id as orderId , price from(
+        select order_id,price,rownum from (
+            select order_id,price from test_order where price = #{price} and rownum <![CDATA[  >  ]]> #{start}
+        ) where rownum <![CDATA[  <  ]]>  #{end}
+      );
+      
+  </select>-->
 </mapper>

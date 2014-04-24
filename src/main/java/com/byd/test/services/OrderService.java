@@ -8,6 +8,9 @@ package com.byd.test.services;
 
 import com.byd.test.domain.Order;
 import com.byd.test.mapper.OrderMapper;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +35,23 @@ public class OrderService {
     }
 
     public void test(){
-        Order order= orderMapper.getOrderByOrderId("20");
-        System.out.println("order :  " + order.getPrice());
+//        Order order= orderMapper.getOrderByOrderId("20");
+//        System.out.println("order :  " + order.getPrice());
+        
+//        orderMapper.insertOrder(new Order("bd3","a"));
+//        
+//        orderMapper.deleteOrderByOrderId("20");
+//        List<Order> orderList = orderMapper.selectAllOrder();
+//        System.out.println("orderList.size() = " + orderList.size());
+        Map map = new HashMap();
+        Order order10 = new Order();
+        order10.setPrice("a");
+        map.put("price", "a");
+        map.put("start", "3");
+        map.put("end", "5");
+//        List<Order> orderList = orderMapper.selectOrderByPaging(map);
+//        System.out.println("orderList.size() = " + orderList.size());
+        
         System.out.println("OrderService.test");
     }
 

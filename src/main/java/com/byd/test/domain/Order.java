@@ -20,6 +20,13 @@ public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String orderId;
+    private String price;
+    
+    public Order(){}
+    public Order(String orderId,String price){
+        this.orderId = orderId;
+        this.price = price;
+    }
 
     public String getOrderId() {
         return orderId;
@@ -36,5 +43,5 @@ public class Order implements Serializable {
     public void setPrice(String price) {
         this.price = price;
     }
-    private String price;
+    
 }
