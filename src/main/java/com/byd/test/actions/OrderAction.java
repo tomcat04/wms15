@@ -7,6 +7,8 @@
 package com.byd.test.actions;
 
 import com.byd.test.services.OrderService;
+import java.util.Date;
+import java.util.Map;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +33,7 @@ public class OrderAction {
         
         System.out.println("lalalallalaallalahahhahahahhawawawaawawawawa");
         orderService.test();
-        System.out.println("ioioioioioioiioiioioioiioioioioioioioioioio");
+        System.out.println("ioioioioioioiioiioioioiioioioioioioioioioio" + new Date());
         return "success";
     }
 }
