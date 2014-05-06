@@ -49,9 +49,9 @@ public class OrderService {
         map.put("price", "a");
         map.put("start", "3");
         map.put("end", "5");
-//        List<Order> orderList = orderMapper.selectOrderByPaging(map);
-//        System.out.println("orderList.size() = " + orderList.size());
-        orderMapper.updateOrderByOrderId(new Order("AA","Zz"));
+        List<Order> orderList = orderMapper.selectOrderByPaging(map);
+        System.out.println("orderList.size() = " + orderList.size());
+        //orderMapper.updateOrderByOrderId(new Order("AA","Tt"));
         
         System.out.println("OrderService.test");
     }

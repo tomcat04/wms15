@@ -40,4 +40,42 @@
     <!-- enable transaction demarcation with annotations -->
     <tx:annotation-driven />
     
+    <!-- 定时器 -->
+    <bean name="contentarbitrateservicejob"  class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass">
+            <value>com.byd.test.timer.QuartzTask</value>
+        </property>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="timeout">
+                    <value>5</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+ 
+    <!-- 配置触发器 -->
+    <bean id="cronTriggerCA" class="org.springframework.scheduling.quartz.CronTriggerBean">
+
+        <property name="jobDetail">
+            <ref bean="contentarbitrateservicejob"/>
+        </property>
+        <!-- 每天的10点到50点 触发，具体说明见附录 -->
+        <property name="cronExpression">
+            <value>0/15 * * * * ?</value>
+        </property>
+
+    </bean>
+  
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+
+        <!-- 添加触发器 -->
+        <property name="triggers">
+            <list>
+                <ref local="cronTriggerCA"/>
+            </list>
+        </property>
+    </bean>
+    <!-- //定时器 -->
+    
 </beans>

@@ -11,10 +11,65 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--<script src="${application.getContextPath()}/static/js/jquery-1.11.0.min.js" type="text/javascript"></script>-->
+        <script type="text/javascript" src="<c:url value="/static/js/jquery-1.11.0.min.js" />"></script>
+        <script>
+            $(document).ready(function(){
+              //alert("rrrttt");
+//              $("p").click(function(){
+//                  $(this).hide();
+//              });
+//              $("#plantCode").blur(function(){
+//                  alert("plantCode.click");
+//              });
+                
+              $("#plantCode").focusin(function(){
+                  alert(document.getElementById("plantCode").innerHTML.toString().length);
+                  //$( "#showornot" ).text( "Something was selected" ).show().fadeOut( 1000 );
+                  if(document.getElementById("plantCode").innerHTML.toString().length > 1){
+                      $( "div" ).text( "Something was selected" ).show().fadeOut( 1000 );
+                  }
+              });
+              $("#plantCode").focusout(function(){
+                  //alert("focusout");
+              });
+            });
+        </script>
         <title>JSP Page</title>
     </head>
     <body>
         <h1>Hello World!</h1>
-        <c:redirect url="/app/index/helloworld" />
+        <br><p>测试javascript</p><br><br>
+        <div id="baidu_png">
+            <img class="baidu_png1" src="<c:url value="/static/png/favicon.png"/>"/>
+        </div>
+        <br>
+        <div class="input-control text" >
+            输入框<input id="plantCode" name="plantCode" type="text"/>
+            <div id="showornot"></div>
+        </div><br><br>
+        <button id="btn1">显示文本</button>
+        <%--<c:redirect url="/app/index/helloworld" />--%>
+        <a href="app/index/helloworld">helloworld</a> &nbsp;&nbsp;&nbsp;
+        <a href="app/index/opera">opera</a><br><br><br>
+        
+        <style>
+            .input{position:relative;}
+            .input .x{display:none;text-decoration:none;position:absolute;left:190px;color:blue;font-weight:bold}
+        </style>
+        <div class="input">
+            <a href="#" class="x" onclick="return clearInput(this)">X</a>
+            <input type="text" style="width:200px" onkeyup="xShow(this)" />
+        </div>
+        <script type="text/javascript">
+            function clearInput(a) {
+                a.parentNode.getElementsByTagName('input')[0].value = '';
+                a.style.display = 'none'; 
+                return false;
+            }
+            function xShow(ipt) {
+                ipt.parentNode.getElementsByTagName('a')[0].style.display = ipt.value == '' ? 'none' : 'block'
+            }
+        </script>
     </body>
 </html>
