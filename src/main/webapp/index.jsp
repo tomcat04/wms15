@@ -15,23 +15,16 @@
         <script type="text/javascript" src="<c:url value="/static/js/jquery-1.11.0.min.js" />"></script>
         <script>
             $(document).ready(function(){
-              //alert("rrrttt");
-//              $("p").click(function(){
-//                  $(this).hide();
-//              });
-//              $("#plantCode").blur(function(){
-//                  alert("plantCode.click");
-//              });
                 
               $("#plantCode").focusin(function(){
-                  alert(document.getElementById("plantCode").innerHTML.toString().length);
-                  //$( "#showornot" ).text( "Something was selected" ).show().fadeOut( 1000 );
+//                  $( "div" ).text( "focusin" ).show().fadeOut( 1000 );
+                  $( "#showornot" ).text( "focusin" ).show().fadeOut( 1000 );
                   if(document.getElementById("plantCode").innerHTML.toString().length > 1){
-                      $( "div" ).text( "Something was selected" ).show().fadeOut( 1000 );
+                      $( "#showornot" ).text( "xxxxxx" ).show().fadeOut( 1000 );
                   }
               });
               $("#plantCode").focusout(function(){
-                  //alert("focusout");
+                  $( "#showornot" ).text( "focusout" ).show().fadeOut( 1000 );
               });
             });
         </script>
@@ -41,7 +34,7 @@
         <h1>Hello World!</h1>
         <br><p>测试javascript</p><br><br>
         <div id="baidu_png">
-            <img class="baidu_png1" src="<c:url value="/static/png/favicon.png"/>"/>
+            <img class="baidu_png" src="<c:url value="/static/png/favicon.png"/>"/>
         </div>
         <br>
         <div class="input-control text" >
