@@ -13,56 +13,62 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!--<script src="${application.getContextPath()}/static/js/jquery-1.11.0.min.js" type="text/javascript"></script>-->
         <script type="text/javascript" src="<c:url value="/static/js/jquery-1.11.0.min.js" />"></script>
-        <script>
-            $(document).ready(function(){
-                
-              $("#plantCode").focusin(function(){
-//                  $( "div" ).text( "focusin" ).show().fadeOut( 1000 );
-                  $( "#showornot" ).text( "focusin" ).show().fadeOut( 1000 );
-                  if(document.getElementById("plantCode").innerHTML.toString().length > 1){
-                      $( "#showornot" ).text( "xxxxxx" ).show().fadeOut( 1000 );
-                  }
-              });
-              $("#plantCode").focusout(function(){
-                  $( "#showornot" ).text( "focusout" ).show().fadeOut( 1000 );
-              });
-            });
-        </script>
         <title>JSP Page</title>
     </head>
     <body>
         <h1>Hello World!</h1>
-        <br><p>测试javascript</p><br><br>
-        <div id="baidu_png">
-            <img class="baidu_png" src="<c:url value="/static/png/favicon.png"/>"/>
-        </div>
-        <br>
-        <div class="input-control text" >
-            输入框<input id="plantCode" name="plantCode" type="text"/>
-            <div id="showornot"></div>
-        </div><br><br>
-        <button id="btn1">显示文本</button>
-        <%--<c:redirect url="/app/index/helloworld" />--%>
+        <a href="app/xopera/forwardUploadFile">xopera main</a><br><br>
         <a href="app/index/helloworld">helloworld</a> &nbsp;&nbsp;&nbsp;
-        <a href="app/index/opera">opera</a><br><br><br>
-        
-        <style>
-            .input{position:relative;}
-            .input .x{display:none;text-decoration:none;position:absolute;left:190px;color:blue;font-weight:bold}
-        </style>
-        <div class="input">
-            <a href="#" class="x" onclick="return clearInput(this)">X</a>
-            <input type="text" style="width:200px" onkeyup="xShow(this)" />
-        </div>
-        <script type="text/javascript">
-            function clearInput(a) {
-                a.parentNode.getElementsByTagName('input')[0].value = '';
-                a.style.display = 'none'; 
-                return false;
+        <a href="app/index/opera">opera</a><br>
+    这是一个输入框
+    <div class="yes">
+        <input id="plantCode" type="text" onkeyup="yShow()"/>
+        <img id="pic" hidden="hidden" src="static/png/favicon.png" onclick="clearInput(this)"/>
+    </div>
+    <div id="hello"></div>
+    <div id="world"></div>
+    <script>
+        $(function(){
+            console.info("www");
+            $("#plantCode").focusin(function(){
+                //$("#plantCode").
+                   var a = $("#plantCode").val().length;
+                   console.info("999:" + a);
+                   if(a > 0){
+                       $("#pic").show();
+                   }
+                   if(a <= 0){
+                       $("#pic").hide();
+                   }
+            });
+            $("#plantCode").focusout(function(){
+                console.info("失去焦点");
+    //              $("#pic").hide();
+            });
+            $("#pic").click(function(){
+                  console.info("input size: " + $("#ploanCode").width());
+                  console.info("pic.size : " + $("#pic").width());
+                  console.info("dddddd");
+                  $( "#world").text("focusout").show().fadeOut(1000);
+                });
+            });
+        function yShow() {
+            console.info("ddddd222eeee");
+            var s = $("#plantCode").val().length;
+            if (s > 0) {
+                $("#pic").show();
             }
-            function xShow(ipt) {
-                ipt.parentNode.getElementsByTagName('a')[0].style.display = ipt.value == '' ? 'none' : 'block'
+            else {
+                $("#pic").hide();
             }
-        </script>
-    </body>
+        }
+        function clearInput(a) {
+            console.info("清空输入");
+            a.parentNode.getElementsByTagName('input')[0].value = '';
+        }
+    </script>
+    <div id="foo">FOO!</div>
+
+    ------------------------<br>
+</body>
 </html>
