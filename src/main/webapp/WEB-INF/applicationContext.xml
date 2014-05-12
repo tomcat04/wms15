@@ -78,4 +78,12 @@
     </bean>
     <!-- //定时器 -->
     
+<!--    <aop:config>      
+        <aop:aspect id="myAop" ref="check">        
+            <aop:pointcut id="target" expression="execution(* com.byd.test.aop.*.*(..))"/>        
+            <aop:before method="checkValidity" pointcut-ref="target"/>       
+            <aop:after method="addLog" pointcut-ref="target"/>     
+        </aop:aspect>   
+    </aop:config>-->
+    
 </beans>

@@ -55,5 +55,8 @@ public class OrderService {
         
         System.out.println("OrderService.test");
     }
+    public List<Order> selectAll(){
+        return orderMapper.selectAllOrder();
+    }
 
 }

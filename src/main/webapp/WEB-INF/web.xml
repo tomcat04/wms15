@@ -15,6 +15,9 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <listener>    
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>    
+    </listener>   
     <display-name>test</display-name>  
     <!-- 添加spring3控制器及映射规则 -->  
     <servlet>  
