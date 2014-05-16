@@ -7,6 +7,7 @@
 package com.byd.test.mapper;
 
 import com.byd.test.domain.Order;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -19,9 +20,10 @@ import java.util.Map;
  */
 public interface OrderMapper {
     Order getOrderByOrderId(String orderId);
-    void insertOrder(Order order);
+    void insertOrder(Order order) throws Exception;
     void deleteOrderByOrderId(String orderId);
     List<Order> selectAllOrder();
     List<Order> selectOrderByPaging(Map map);
     void updateOrderByOrderId(Order order);
+    void performPro(Map map);
 }

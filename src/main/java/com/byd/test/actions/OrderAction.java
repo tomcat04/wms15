@@ -7,10 +7,10 @@
 package com.byd.test.actions;
 
 import com.byd.test.domain.Order;
+import com.byd.test.services.MyThread;
 import com.byd.test.services.OrderService;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +25,7 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,11 +44,15 @@ public class OrderAction {
     
     @Resource
     private OrderService orderService;
+    @Resource
+    private MyThread myThread;
 
     @RequestMapping("helloworld")
-    public String helloworld(){
+    public String helloworld(Model model){
         orderService.test();
         System.out.println("ioioioioioioiioiioioioiioioioioioioioioioio" + new Date());
+        Order order = new Order("D","G");
+        model.addAttribute(order);
         return "success";
     }
     @RequestMapping("opera")
@@ -135,7 +140,7 @@ public class OrderAction {
     public void getCookie(HttpServletResponse response){
         System.out.println("asdfsdfsfsadfsaf");
     }
-    @RequestMapping(value="testAjax",method = RequestMethod.POST)
+    @RequestMapping(value="testAjax")
     public ModelAndView testAjax(@ModelAttribute Order order){
         System.out.println("test ajax");
         order = new Order("apple","eppla");
@@ -146,6 +151,21 @@ public class OrderAction {
         ModelAndView mv = new ModelAndView();
         //mv.setViewName(null);
         mv.addObject("order", order);
+        
+//        //mybatis调用存储过程
+//        Map map = new HashMap();
+//        map.put("param1", (new Date()).toString());
+//        map.put("param2", "chengangxiong");
+//        orderService.perform(map);
+        
+//        MyThread myThread = new MyThread();
+        Thread demo = new Thread(myThread);
+        try{
+        demo.start();
+        }catch(Exception e){
+            e.printStackTrace();
+    }
+        
         return mv;
     }
 }

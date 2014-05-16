@@ -13,11 +13,14 @@
     <!--<context:component-scan base-package="org.mybatis.jpetstore.service" />-->
     <context:annotation-config />  
     <bean id="orderService" class="com.byd.test.services.OrderService" lazy-init="true"></bean>
+    <bean id="myThread" class="com.byd.test.services.MyThread" lazy-init="true"></bean>
     
     <!-- define the SqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="typeAliasesPackage" value="com.byd.test.domain" />
+        <!--<property name="configLocation">-->
+        <!--<property name="mapperLocations">-->
     </bean>
 
     <!-- scan for mappers and let them be autowired -->
@@ -33,10 +36,20 @@
     </bean>
 
     <!-- transaction manager, use JtaTransactionManager for global tx -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
-
+<!--    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true" />
+            <tx:method name="*" />
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+    <aop:pointcut id="os" expression="execution(* com.byd.test.services.OrderService.*(..))"/>
+    <aop:advisor advice-ref="exAdvice" pointcut-ref="os" />
+    </aop:config>-->
+    
     <!-- enable transaction demarcation with annotations -->
     <tx:annotation-driven />
     

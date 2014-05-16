@@ -20,7 +20,10 @@
         <a href="app/xopera/forwardUploadFile">xopera main</a><br><br>
         <a href="app/index/showAll">showAll</a><br><br>
         <a href="app/index/createCookie">createCookie</a><br><br>
-        测试Ajax<img id="test" src="static/png/favicon.png" onclick="testAjax()"/><div id="ajaxShow"></div>
+        测试Ajax<img id="test" src="static/png/favicon.png" onclick="testAjax()"/>
+        <div id="ajaxShow">
+            ${order.price}
+        </div>
         <a href="app/index/getCookie">getCookie</a><br><br>
         <a href="app/index/helloworld">helloworld</a> &nbsp;&nbsp;&nbsp;
         <a href="app/index/opera">opera</a><br>
@@ -34,7 +37,6 @@
     <script>
         function testAjax(){
             console.info("测试ajax");
-            //var menuId = $( "ul.nav" ).first().attr( "id" );
             $.ajax({
               url: "app/index/testAjax",
               contentType : "application/json",
@@ -44,34 +46,26 @@
               dataType: "json",
               timeout: 5000,
             
-            beforeSend: function (XMLHttpRequest) {
+              beforeSend: function (XMLHttpRequest) {
                 $('#ajaxShow').text("正在查询");
-            },
-            success: function (data) {
-                console.info(data.order.price);
-                $('#ajaxShow').text("查询成功");
-                //console.info(data.orderId);
-            },
-            error: function (err) {
+              },
+              success: function (data) {
+                console.info(data.order);
+                //alert("..." + data);
+                //$('#ajaxShow').text("查询成功" + data.order.price);
+                $('#ajaxShow').text(data.order);
+              },
+              error: function (err) {
                 $('#ajaxShow').text("查询失败");
                 console.info(err);
-            }
+              }
             });
-//            request.done(function( msg ) {
-//                console.info("done");
-//                console.info("msg ： " + msg);
-//              $( "#log" ).html( msg );
-//            });
-//            request.fail(function( jqXHR, textStatus ) {
-//                console.info("fail");
-//              alert( "Request failed: " + textStatus );
-//            });
         }
     </script>
     <script>
         $(function(){
             if(window.console&&window.console.log){
-                console.log("www");
+                console.log("页面加载");
             }
             
             $("#plantCode").focusin(function(){
