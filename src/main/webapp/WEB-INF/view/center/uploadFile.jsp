@@ -10,9 +10,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <!--<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/static/ext/theme/ext-theme-crisp-all.css">-->
+        <link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/gpl/5.0.0/build/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css">
+        <script type="text/javascript" src="<%=request.getContextPath()%>/static/ext/ext-all.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/static/js/test.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1><br>
-        file:<input type="file" id="file" name="file" />
+<!--        <div id="form">tt  ${size}</div><br>-->
     </body>
 </html>

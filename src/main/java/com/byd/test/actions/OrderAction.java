@@ -11,6 +11,7 @@ import com.byd.test.services.MyThread;
 import com.byd.test.services.OrderService;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -21,14 +22,21 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.logging.Log;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.scheduling.quartz.CronTriggerBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.ContextLoader;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -42,6 +50,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("index")
 public class OrderAction {
     
+    
     @Resource
     private OrderService orderService;
     @Resource
@@ -49,6 +58,7 @@ public class OrderAction {
 
     @RequestMapping("helloworld")
     public String helloworld(Model model){
+        Logger.getLogger(OrderAction.class.getName()).log(Level.WARNING, "","");
         orderService.test();
         System.out.println("ioioioioioioiioiioioioiioioioioioioioioioio" + new Date());
         Order order = new Order("D","G");
@@ -73,7 +83,7 @@ public class OrderAction {
             OutputStream out = response.getOutputStream();
             response.reset();
             response.setHeader("content-disposition","attachment;filename=" + "fileName.xls");
-            response.setContentType("APPLICATION/msexcel");
+            response.setContentType("application/x-octetstream;charset=gb2312");
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet sheet = null;
             String sheetName = "first sheet";
@@ -115,7 +125,7 @@ public class OrderAction {
     
     //在页面显示全部数据
     @RequestMapping("showAll")
-    public ModelAndView showAll(){
+    public ModelAndView showAll() throws Exception{
         List<Order> orderList = orderService.selectAll();
         ModelAndView mav = new ModelAndView();
         mav.setViewName("allOrder");
@@ -167,5 +177,84 @@ public class OrderAction {
     }
         
         return mv;
+    }
+    
+    @RequestMapping("setJobTime")
+    public void setJobTime(){
+        try {
+            Scheduler scheduler = (Scheduler) ContextLoader.getCurrentWebApplicationContext().getBean("schedulerFactory");
+            CronTriggerBean trigger = (CronTriggerBean) scheduler.getTrigger("dispatchingBillCreatorTrigger", Scheduler.DEFAULT_GROUP);
+            if(scheduler.isShutdown()){
+                System.out.println("定时器未运行");
+                throw new Exception("定时器未运行");
+            }
+            String cronExpression = trigger.getCronExpression();
+            System.out.println(" ----------------   " + cronExpression);
+            trigger.setCronExpression("0/8 * * * * ?");
+            scheduler.rescheduleJob("schedulerFactory", Scheduler.DEFAULT_GROUP,trigger);
+        } catch (SchedulerException | ParseException ex) {
+            Logger.getLogger(OrderAction.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(OrderAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @RequestMapping("runSchedual")
+    public void runSchedual(){
+        try {
+            Scheduler scheduler = (Scheduler) ContextLoader.getCurrentWebApplicationContext().getBean("schedulerFactory");
+            if(!scheduler.isInStandbyMode()){
+                System.out.println("定时器正在运行");
+                throw new Exception("定时器正在运行");
+            }
+            scheduler.start();
+        } catch (SchedulerException ex) {
+            Logger.getLogger(OrderAction.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(OrderAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @RequestMapping("stopSchedual")
+    public void stopSchedual(){
+        try {
+            Scheduler scheduler = (Scheduler) ContextLoader.getCurrentWebApplicationContext().getBean("schedulerFactory");
+            if(scheduler.isShutdown()){
+                System.out.println("定时器未运行");
+                throw new Exception("定时器未运行");
+            }
+            scheduler.standby();
+        } catch (SchedulerException ex) {
+            Logger.getLogger(OrderAction.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(OrderAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @RequestMapping(value ="test",method = RequestMethod.POST)
+    public ModelAndView testPost(@ModelAttribute("order") Order order){
+        System.out.println("---" + order.getOrderId());
+        System.out.println("---" + order.getPrice());
+        System.out.println("--------transferAttr");
+        return new ModelAndView("center/uploadFile");
+    }
+    @RequestMapping(value ="test",method = RequestMethod.GET)
+    public ModelAndView testGet(@ModelAttribute("order") Order order){
+        System.out.println("---" + order.getOrderId());
+        System.out.println("---" + order.getPrice());
+        System.out.println("--------transferAttr");
+        return new ModelAndView("center/uploadFile");
+    }
+    @RequestMapping(value ="test",method = RequestMethod.PUT)
+    public ModelAndView testPut(@ModelAttribute("order") Order order){
+        System.out.println("---" + order.getOrderId());
+        System.out.println("---" + order.getPrice());
+        System.out.println("--------transferAttr");
+        return new ModelAndView("center/uploadFile");
+    }
+    @RequestMapping(value ="test",method = RequestMethod.DELETE)
+    public ModelAndView testDelete(@ModelAttribute("order") Order order){
+        System.out.println("---" + order.getOrderId());
+        System.out.println("---" + order.getPrice());
+        System.out.println("--------transferAttr");
+        return new ModelAndView("center/uploadFile");
     }
 }

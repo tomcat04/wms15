@@ -40,8 +40,8 @@ public class Order implements Serializable {
         return price;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setPrice(OrderType price) {
+        this.price = price.getContext();
     }
     
 }

@@ -12,7 +12,9 @@
 
     <!--<context:component-scan base-package="org.mybatis.jpetstore.service" />-->
     <context:annotation-config />  
-    <bean id="orderService" class="com.byd.test.services.OrderService" lazy-init="true"></bean>
+    <bean id="orderService" class="com.byd.test.services.OrderService" lazy-init="true">
+        <!--<property name="scheduler" ref="schedulerFactory" />-->
+    </bean>
     <bean id="myThread" class="com.byd.test.services.MyThread" lazy-init="true"></bean>
     
     <!-- define the SqlSessionFactory -->
@@ -20,7 +22,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="typeAliasesPackage" value="com.byd.test.domain" />
         <!--<property name="configLocation">-->
-        <!--<property name="mapperLocations">-->
+        <!--<property name="mapperLocations" value="classpath*:com/byd/test/mapper/*.xml" />-->
     </bean>
 
     <!-- scan for mappers and let them be autowired -->
@@ -30,13 +32,14 @@
     
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-        <property name="url" value="jdbc:oracle:thin:@10.9.23.52:1521:bpsdb" />
+        <property name="url" value="jdbc:oracle:thin:@10.9.23.153:1521:bpsdb" />
         <property name="username" value="wlmis" />
         <property name="password" value="wlmis" />
     </bean>
 
+    <tx:annotation-driven transaction-manager="transactionManager" />
     <!-- transaction manager, use JtaTransactionManager for global tx -->
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
 <!--    <tx:advice id="txAdvice" transaction-manager="txManager">
@@ -44,59 +47,40 @@
             <tx:method name="get*" read-only="true" />
             <tx:method name="*" />
         </tx:attributes>
-    </tx:advice>
-    <aop:config>
-    <aop:pointcut id="os" expression="execution(* com.byd.test.services.OrderService.*(..))"/>
-    <aop:advisor advice-ref="exAdvice" pointcut-ref="os" />
+    </tx:advice>-->
+<!--    <aop:config>
+        <aop:pointcut id="os" expression="execution(* com.byd.test.services.OrderService.*(..))"/>
+        <aop:advisor advice-ref="exAdvice" pointcut-ref="os" />
     </aop:config>-->
     
     <!-- enable transaction demarcation with annotations -->
     <tx:annotation-driven />
     
-    <!-- 定时器 -->
-    <bean name="contentarbitrateservicejob"  class="org.springframework.scheduling.quartz.JobDetailBean">
-        <property name="jobClass">
-            <value>com.byd.test.timer.QuartzTask</value>
-        </property>
-        <property name="jobDataAsMap">
-            <map>
-                <entry key="timeout">
-                    <value>5</value>
-                </entry>
-            </map>
-        </property>
-    </bean>
- 
-    <!-- 配置触发器 -->
-    <bean id="cronTriggerCA" class="org.springframework.scheduling.quartz.CronTriggerBean">
-
-        <property name="jobDetail">
-            <ref bean="contentarbitrateservicejob"/>
-        </property>
-        <!-- 每天的10点到50点 触发，具体说明见附录 -->
-        <property name="cronExpression">
-            <value>0/15 * * * * ?</value>
-        </property>
-
-    </bean>
-  
-    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-
+  <!--触发器配置如下-->
+    <bean id="schedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <!-- 添加触发器 -->
         <property name="triggers">
             <list>
-                <ref local="cronTriggerCA"/>
+                <ref bean="dispatchingBillCreatorTrigger"/>
             </list>
         </property>
+        <property name="autoStartup" value="false"/>  
+        <property name="quartzProperties">  
+            <props>  
+                <prop key="org.quartz.threadPool.threadCount">1</prop>  
+            </props>  
+        </property>
     </bean>
-    <!-- //定时器 -->
-    
-<!--    <aop:config>      
-        <aop:aspect id="myAop" ref="check">        
-            <aop:pointcut id="target" expression="execution(* com.byd.test.aop.*.*(..))"/>        
-            <aop:before method="checkValidity" pointcut-ref="target"/>       
-            <aop:after method="addLog" pointcut-ref="target"/>     
-        </aop:aspect>   
-    </aop:config>-->
-    
+    <bean id="dispatchingBillCreatorTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean"  lazy-init="true">
+        <property name="jobDetail" ref="dispatchingBillCreatorJobDetail"/>
+        <property name="startDelay" value="6000" />
+        <property name="cronExpression">   
+            <value>0/15 * * * * ?</value>   
+        </property> 
+    </bean>
+    <bean id="dispatchingBillCreatorJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" lazy-init="true">
+        <property name="targetObject" ref="orderService" />
+        <property name="targetMethod"  value="quartz"/>
+        <property name="concurrent" value="false"/>
+    </bean>
 </beans>

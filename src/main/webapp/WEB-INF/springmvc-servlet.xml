@@ -17,7 +17,7 @@
     <context:component-scan base-package="com.xopera.center.controller" />-->
     <context:component-scan base-package="com" >
         <!--<context:include-filter type="regex" expression=".service.*"/>-->
-        <context:include-filter type="regex" expression=".byd.test.actions"/>
+        <context:include-filter type="regex" expression=".xopera.center.ws"/>
         <context:include-filter type="regex" expression=".xopera.center.controller"/>
     </context:component-scan>
     <!-- 添加注解驱动 -->  
