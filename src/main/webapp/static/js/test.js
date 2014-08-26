@@ -1,6 +1,6 @@
 console.info("js start work!");
 Ext.onReady(function() {
-    var button = Ext.create('Ext.Button', {
+    var button1 = Ext.create('Ext.Button', {
         text: 'Click me',
         handler: function() {
             Ext.Ajax.request({
@@ -16,26 +16,14 @@ Ext.onReady(function() {
                 });
         }
     });
-    //var input = Ext.create();
     var pnNorth = Ext.create('Ext.Panel',{
         id:'pnNorth',
         title: 'title test',
         autoWidth: true,
         heigth: 300,
         split: true,
-        //frame: true,
         region: 'north',
-        items:button
-    });
-    var pnWest = Ext.create('Ext.Panel',{
-        title: '菜单项',
-        width: 300,
-        heigth: 'auto',
-        split: true, //显示分隔条
-        region: 'west',
-        collapsible: false, //收拢按钮
         html: '这里放置页头内容'
-
     });
     var pnCenter = Ext.create('Ext.TabPanel', {
         region: 'center',
@@ -45,71 +33,32 @@ Ext.onReady(function() {
                 title: '收件箱',
                 authHeight: true,
                 closable: true, //是否可关闭
-                html: '这里显示所收邮件。。。'
+                items: button1
             }
         ]
     });
-    
     var store = Ext.create('Ext.data.TreeStore', {
+        // 根节点的参数是parentId
+        nodeParam: 'parentId',
+        autoLoad: true,
+        proxy: {
+            method: 'GET',
+            type: 'ajax',
+            url: 'testMenu',
+            reader: {
+                type: 'json',
+                root: 'menuList'
+            }
+        },
         root: {
-            expanded: true,
-            children: [{
-                    text: '应用程序管理',
-                    expanded: false,
-                    children: [{
-                            text: '应用程序管理',
-                            id: 'appManage',
-                            leaf: true
-                        }],
-                    listeners : {  
-                            click : function(node,e){  
-                                mainPanel.load({  
-                                    url:'node/',
-                                    callback : function(){  
-                                        mainPanel.setTitle(node.text);  
-                                    },  
-                                    scripts: true  
-                                });  
-                            }  
-                        }  
-                }, {
-                    text: '页面配置管理',
-                    expanded: false,
-                    children: [{
-                            text: '页面配置管理',
-                            id: 'configManage',
-                            leaf: true
-                        }, {
-                            text: ' 页面按钮配置',
-                            id: 'buttonManage',
-                            leaf: true
-                        }]
-                }, {
-                    text: '用户管理',
-                    expanded: false,
-                    children: [{
-                            text: '用户管理',
-                            id: 'userManage',
-                            leaf: true
-                        }, {
-                            text: '权限管理',
-                            id: 'rowManage',
-                            leaf: true
-                        }]
-                }, {
-                    text: '任务管理',
-                    expanded: false,
-                    children: [{
-                            text: '任务管理',
-                            id: 'taskMange',
-                            leaf: true
-                        }]
-                }]
+            text: '根节点',
+            id: '-1',
+            parentId: '-1',
+            expanded: true
         }
     });
     var treePanelApp = Ext.create('Ext.tree.Panel', {
-//        id: 'tree-panel',
-//        animate:true,
+        animate:true,
         title: '菜单',
         region: 'west',
         collapsible: false,
@@ -117,15 +66,8 @@ Ext.onReady(function() {
         heigth: 'auto',
         width: 280,
         rootVisible: false,
-//        store: store
-        root: {
-            text: "Root node",
-            expanded: true,
-            children: [
-                { text: "Child 1", leaf: true },
-                { text: "Child 2", leaf: true }
-            ]
-        }
+        useArrows : true,  
+        store : store
     });
     Ext.create('Ext.Viewport', {
         layout: "border",
@@ -134,5 +76,9 @@ Ext.onReady(function() {
             treePanelApp,
             pnCenter
         ]
+    });
+    //treePanelApp.on("itemclick", function(view,record,item,index,e) {
+    treePanelApp.on("itemclick", function(view,record,item,index,e) {
+        console.info("------------------" + record.id);
     });
 });
