@@ -23,7 +23,7 @@ Ext.onReady(function() {
         heigth: 300,
         split: true,
         region: 'north',
-        html: '这里放置页头内容'
+        items: button1
     });
     var pnCenter = Ext.create('Ext.TabPanel', {
         region: 'center',
@@ -32,15 +32,24 @@ Ext.onReady(function() {
             {
                 title: '收件箱',
                 authHeight: true,
+                layout:'fit',
+                autoScroll:true,
                 closable: true, //是否可关闭
-                items: button1
+                html:'<iframe scrolling="auto" frameborder="0" width="100%" height="630" src="http://www.baidu.com"></iframe>'
+            },
+            {
+                title: '收件箱',
+                authHeight: true,
+                layout:'fit',
+                autoScroll:true,
+                closable: true, //是否可关闭
+                html:'<iframe scrolling="auto" frameborder="0" width="100%" height="630" src="http://www.news.baidu.com"></iframe>'
             }
         ]
     });
     var store = Ext.create('Ext.data.TreeStore', {
         // 根节点的参数是parentId
         nodeParam: 'parentId',
-        autoLoad: true,
         proxy: {
             method: 'GET',
             type: 'ajax',
@@ -58,15 +67,11 @@ Ext.onReady(function() {
         }
     });
     var treePanelApp = Ext.create('Ext.tree.Panel', {
-        animate:true,
         title: '菜单',
         region: 'west',
-        collapsible: false,
-        split: true,
         heigth: 'auto',
         width: 280,
         rootVisible: false,
-        useArrows : true,  
         store : store
     });
     Ext.create('Ext.Viewport', {

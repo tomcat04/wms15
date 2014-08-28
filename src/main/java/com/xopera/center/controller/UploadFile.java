@@ -95,32 +95,32 @@ public class UploadFile {
         System.out.println("查询菜单传入参数 parentId ：" + parentId);
         List<Menu> menuList = new ArrayList<>();
         if(parentId.equals("-1")){
-            Menu menu = new Menu("3","101","一级菜单1",false,"0");
+            Menu menu = new Menu("3","一级菜单1",false,"0");
             menuList.add(menu);
-            menu = new Menu("4","102","一级菜单2",false,"0");
+            menu = new Menu("4","一级菜单2",false,"0");
             menuList.add(menu);
-            menu = new Menu("5","103","一级菜单3",true,"0");
+            menu = new Menu("5","一级菜单3",true,"0");
             menuList.add(menu);
         }else if(parentId.equals("3")){
-            Menu menu = new Menu("6","105","一级菜单1",false,"5");
+            Menu menu = new Menu("6","二级菜单1",false,"5");
             menuList.add(menu);
-            menu = new Menu("7","107","一级菜单2",true,"5");
+            menu = new Menu("7","二级菜单2",true,"5");
             menuList.add(menu);
-            menu = new Menu("8","108","一级菜单3",true,"5");
+            menu = new Menu("8","二级菜单3",true,"5");
             menuList.add(menu);
         }else if(parentId.equals("4")){
-            Menu menu = new Menu("9","105","一级菜单1",true,"5");
+            Menu menu = new Menu("9","二级菜单4",true,"5");
             menuList.add(menu);
-            menu = new Menu("10","107","一级菜单2",true,"5");
+            menu = new Menu("10","二级菜单5",true,"5");
             menuList.add(menu);
-            menu = new Menu("11","108","一级菜单3",true,"5");
+            menu = new Menu("11","二级菜单6",true,"5");
             menuList.add(menu);
         }else if(parentId.equals("6")){
-            Menu menu = new Menu("12","105","一级菜单1",true,"5");
+            Menu menu = new Menu("12","三级菜单1",true,"5");
             menuList.add(menu);
-            menu = new Menu("13","107","一级菜单2",true,"5");
+            menu = new Menu("13","三级菜单2",true,"5");
             menuList.add(menu);
-            menu = new Menu("14","108","一级菜单3",true,"5");
+            menu = new Menu("14","三级菜单3",true,"5");
             menuList.add(menu);
         }
         return menuList;

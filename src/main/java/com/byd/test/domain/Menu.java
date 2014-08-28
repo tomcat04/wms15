@@ -70,8 +70,8 @@ public class Menu {
         this.leaf = leaf;
         this.parentId = parentId;
     }
-    public Menu(String tid,String text,boolean  leaf,String parentId){
-        this.tid = tid;
+    public Menu(String id,String text,boolean  leaf,String parentId){
+        this.id = id;
         this.text = text;
         this.leaf = leaf;
         this.parentId = parentId;
