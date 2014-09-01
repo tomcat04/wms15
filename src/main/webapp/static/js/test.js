@@ -120,7 +120,7 @@ Ext.onReady(function() {
                 id : record.id,
                 title : record.data.text,
                 closable : true,
-                html : '<iframe scrolling="no" frameborder="0" width="100%" height="620" src="/wms15/app/xopera/forwardUploadFile"></iframe>'
+                html : '<iframe scrolling="no" frameborder="0" width="100%" height="620" src="/wms15/app/xopera/index"></iframe>'
                 });
             pnCenter.setActiveTab(n);
         }

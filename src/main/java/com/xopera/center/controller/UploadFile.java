@@ -39,7 +39,7 @@ public class UploadFile {
     @Resource
     private OrderService orderService;
     
-    @RequestMapping("forwardUploadFile")
+    @RequestMapping("main")
     public ModelAndView helloworld(HttpServletRequest req){
         List<Order> orderList = null;
 //        try {
@@ -50,7 +50,7 @@ public class UploadFile {
 //        }
         System.out.println("sdddddds");
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("center/uploadFile");
+        mv.setViewName("center/main");
         mv.addObject("size",365);
         return mv;
     }
@@ -157,5 +157,10 @@ public class UploadFile {
         list.add(order1);
         map.put("list", list);
         return map;
+    }
+    
+    @RequestMapping("index")
+    public String index(){
+        return "index";
     }
 }

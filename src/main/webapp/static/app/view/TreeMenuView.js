@@ -8,6 +8,9 @@
 Ext.define("App.view.TreeMenuView", {
     extend: "Ext.tree.Panel",
     alias : 'widget.mytree',
+    heigth: 'auto',
+    rootVisible: false,
+    width: 280,
     initComponent: function() {
         Ext.apply(this, {
             store: new Ext.data.TreeStore({
@@ -25,7 +28,7 @@ Ext.define("App.view.TreeMenuView", {
                     text: '根节点',
                     id: '-1',
                     parentId: '-1',
-                    leaf:'root',
+                    leaf:false,
                     expanded: false
                 }
             })

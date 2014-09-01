@@ -17,6 +17,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <a href="app/xopera/forwardUploadFile">xopera main</a><br><br>
+        <a href="app/xopera/main">main</a><br><br>
+        <a href="app/xopera/index">index</a><br><br>
 </body>
 </html>

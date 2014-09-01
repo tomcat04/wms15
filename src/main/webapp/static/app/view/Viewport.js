@@ -18,28 +18,24 @@ Ext.define('App.view.Viewport', {
             xtype: "panel",
             collapisble: true,
             region: 'north',
-            height: 200,
-            html: '1111111111111111111111'
+            height: 100,
+            html: '说明栏'
         }, {
             title: '右侧栏',
-            xtype: "userlist",
+            xtype: "panel",
             region: 'east',
-//            items:{
-//                xtype:'userlist'
-//            },
+            items:{
+                xtype:'userlist'
+            },
             width: 250,
             layout: 'fit'
         }, {
-            id: 'mainContent',
-            title: '主题内容显示',
-            xtype: "panel",
+            xtype: "defaultMainTab",
             layout: 'fit',
             region: 'center'
         },{
             title: '菜单栏',
             xtype: "mytree",
-            region: 'west',
-            width: 250,
-            layout: 'fit'
+            region: 'west'
         }]
 });

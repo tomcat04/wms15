@@ -16,11 +16,18 @@ Ext.define('App.controller.TreeMenuController', {
     init: function() {
         console.info("TreeMenuController.init");
         this.control({
-            'TreeMenuView': {
+            'mytree': {
                 itemclick: function(view, record, item, index, e, eOpts) {
-                    console.info('index: ' + index);
+                    var recordid = record.raw.id;
+                    var leaf = record.raw.leaf;
+                    if(leaf){
+                        console.log(recordid + ' is leaf');
+                    }
                 }
             }
         });
+        function create(recordid){
+            console.log('create : ' + recordid);
+        };
     }
 });
