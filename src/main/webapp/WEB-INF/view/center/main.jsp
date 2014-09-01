@@ -12,10 +12,7 @@
         <!--<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/gpl/5.0.0/build/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css">-->
         <!--<link rel="stylesheet" type="text/css" href="http://cdn.sencha.com/ext/gpl/5.0.0/build/packages/ext-theme-gray/build/resources/ext-theme-gray-all.css">-->
         <link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/static/resources/css/ext-theme-gray/ext-theme-gray-all.css" />
-        <!--<link type="text/css" rel="stylesheet" href="<%=request.getContextPath()%>/static/extjs/theme/ext-theme-crisp-all.css" />-->
-        <!--<script type="text/javascript" src="<%=request.getContextPath()%>/static/extjs/ext-all.js"></script>-->
         <script type="text/javascript" src="<%=request.getContextPath()%>/static/extjs/js/bootstrap.js"></script>
-        <!--<script type="text/javascript" src="<%=request.getContextPath()%>/static/extjs/js/ext-all.js"></script>-->
         <script type="text/javascript" src="<%=request.getContextPath()%>/static/app.js"></script>
         <title>JSP Page</title>
     </head>
