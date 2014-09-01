@@ -7,9 +7,6 @@
 
 Ext.define('App.view.Viewport', {
     extend: 'Ext.container.Viewport',
-//    requires: [
-//        "App.view.TreeMenuView"
-//    ],
     defaults: {
         split: true, //是否有分割线
         bodyStyle: 'padding:0px'
@@ -21,22 +18,28 @@ Ext.define('App.view.Viewport', {
             xtype: "panel",
             collapisble: true,
             region: 'north',
-            height: 100,
+            height: 200,
             html: '1111111111111111111111'
         }, {
-            region: 'west',
-            title: '导航栏',
-            xtype: "panel",
-            //items: [Ext.create("App.view.TreeMenuView", {id: 'myTreeMenu'})],
+            title: '右侧栏',
+            xtype: "userlist",
+            region: 'east',
+//            items:{
+//                xtype:'userlist'
+//            },
             width: 250,
-            layout: 'fit',
-            html:'ddd'
+            layout: 'fit'
         }, {
             id: 'mainContent',
             title: '主题内容显示',
             xtype: "panel",
             layout: 'fit',
             region: 'center'
-//            collapisble: true
+        },{
+            title: '菜单栏',
+            xtype: "mytree",
+            region: 'west',
+            width: 250,
+            layout: 'fit'
         }]
 });

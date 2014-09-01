@@ -8,7 +8,16 @@
 Ext.define('App.controller.ViewportController', {
     extend: 'Ext.app.Controller',
     //将Viewport.js添加到控制器
-    views: ['App.view.Viewport'],
+    views:[
+        'App.view.Viewport',
+        'App.view.TreeMenuView'
+    ],
+    stores:[
+        'App.store.TreeMenuStore'
+    ],
+    models:[
+        'App.model.TreeMenuModel'
+    ],
     init: function() {
         console.info('ViewportController.init');
     }

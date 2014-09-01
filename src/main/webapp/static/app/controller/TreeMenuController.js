@@ -7,13 +7,12 @@
 
 Ext.define('App.controller.TreeMenuController', {
     extend: 'Ext.app.Controller',
-//    alias : 'widget.TreeMenuController',
     views: [
-        'TreeMenuView'
+        'App.view.TreeMenuView'
     ],
-    stores: [
-        'TreeMenuStore'
-    ],
+//    stores: [
+//        'App.store.TreeMenuStore'
+//    ],
     init: function() {
         console.info("TreeMenuController.init");
         this.control({

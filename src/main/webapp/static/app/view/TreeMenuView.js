@@ -7,23 +7,30 @@
 
 Ext.define("App.view.TreeMenuView", {
     extend: "Ext.tree.Panel",
-//    alias : 'widget.myTreeMenuView',
-    requires:[
-            "App.store.TreeMenuStore"
-    ],
-//    title: 'Simple Tree',
-//    width: 200,
-//    forceFit: true,
-//    id: "treeMenu",
-    heigth: 'auto',
-    store: 'App.store.TreeMenuStore',
-    rootVisible: false,
+    alias : 'widget.mytree',
     initComponent: function() {
-        console.info("TreeMenuView.initComponent");
-//        Ext.apply(this,{
-//            store:[Ext.create("App.store.TreeMenuStore",{id:'myTreeMenu'})]
-//        });
+        Ext.apply(this, {
+            store: new Ext.data.TreeStore({
+                nodeParam: 'parentId',
+                proxy: {
+                    method: 'GET',
+                    type: 'ajax',
+                    url: 'testMenu',
+                    reader: {
+                        type: 'json',
+                        root: 'menuList'
+                    }
+                },
+                root: {
+                    text: '根节点',
+                    id: '-1',
+                    parentId: '-1',
+                    leaf:'root',
+                    expanded: false
+                }
+            })
+        });
+        this.callParent();
     },
     border: false
-//    renderTo: Ext.getBody()
 });

@@ -8,20 +8,15 @@ Ext.Loader.setConfig({enabled: true});
 Ext.QuickTips.init();
 Ext.application({
     name: 'App',
-    appFolder: '/'+ (window.location+'').split('/')[3] +'/static/app',
+    appFolder: '/' + (window.location + '').split('/')[3] + '/static/app',
 //    appFolder: '/wms15/static/js/app',
     controllers: [
-//        'app.controller.TreeMenuController',
-//        'app.controller.MainPageGridController',
-//        'app.controller.MaterialExceptionLogGridController',
         'App.controller.TreeMenuController',
-        'App.controller.ViewportController'
-    ],
-    views:['App.view.Viewport','App.view.TreeMenuView'
+        'App.controller.ViewportController',
+        'App.controller.UserListController'
     ],
     //自动加载和实例化Viewport文件
     autoCreateViewport: true,
-
     launch: function() {
         console.info('application.launch');
 //        Ext.create('App.view.Viewport',{

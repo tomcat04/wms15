@@ -7,7 +7,8 @@
 
 Ext.define("App.store.TreeMenuStore", {
     extend: "Ext.data.TreeStore",
-    alias : 'widget.TreeMenuStore',
+    defaulrRootId:'root',
+    requires:'App.model.TreeMenuModel',
     nodeParam: 'parentId',
     proxy: {
         method: 'GET',
@@ -15,7 +16,8 @@ Ext.define("App.store.TreeMenuStore", {
         url: 'testMenu',
         reader: {
             type: 'json',
-            root: 'menuList'
+            root: 'menuList',
+            autoLoad:true
         }
     },
     root: {
