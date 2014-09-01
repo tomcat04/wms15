@@ -20,7 +20,7 @@ Ext.onReady(function(){
         //设定命名空间
         name: 'App',
         //指定配置选项，设置相应的路径
-        appFolder: '/wms15/static/js/app',
+        appFolder: '/' + location[3] + '/static/js/app',
         //加载控制器
         //controllers: ['Controller'],
         //自动加载和实例化Viewport文件
