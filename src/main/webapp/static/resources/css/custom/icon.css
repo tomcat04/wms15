@@ -1,0 +1,41 @@
+
+/* 
+    Created on : Mar 3, 2014, 7:57:21 PM
+    Author     : ty
+*/
+
+.icon-user {
+    background-image: url(images/user.png) !important;
+}
+
+.icon-user-add {
+    background-image: url(images/user_add.gif) !important;
+}
+
+.icon-save {
+    background-image: url(images/save.gif) !important;
+}
+
+.icon-reset {
+    background-image: url(images/stop.png) !important;
+}
+
+.icon-grid {
+    background-image: url(images/grid.png) !important;
+}
+
+.icon-add {
+    background-image: url(images/add.png) !important;
+}
+
+.icon-delete {
+    background-image: url(images/delete.png) !important;
+}
+
+.icon-excel {
+    background-image: url(images/excel.png) !important;
+}
+
+.upload-icon {
+    background-image: url(images/upload.png) !important;
+}
