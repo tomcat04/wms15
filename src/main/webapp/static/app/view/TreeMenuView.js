@@ -11,28 +11,9 @@ Ext.define("App.view.TreeMenuView", {
     heigth: 'auto',
     rootVisible: false,
     width: 200,
+    store: 'Ext.data.TreeStore',
     initComponent: function() {
-        Ext.apply(this, {
-            store: new Ext.data.TreeStore({
-//                nodeParam: 'parentId',
-                proxy: {
-//                    method: 'GET',
-                    type: 'rest',
-                    url: 'testMenu',
-                    reader: {
-                        type: 'json',
-                        root: 'menuList'
-                    }
-                },
-                root: {
-                    text: '根节点',
-                    id: '-1',
-                    parentId: '-1',
-                    leaf:false,
-                    expanded: false
-                }
-            })
-        });
+        this.store = Ext.widget('treeMenuStore');
         this.callParent();
     },
     border: false

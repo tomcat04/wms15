@@ -7,7 +7,8 @@
 
 Ext.define("App.store.TreeMenuStore", {
     extend: "Ext.data.TreeStore",
-    requires:'App.model.TreeMenuModel',
+//    requires:'App.model.TreeMenuModel',
+    alias: 'widget.treeMenuStore',
     proxy: {
         type: 'rest',
         url: 'testMenu',
