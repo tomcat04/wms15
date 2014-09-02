@@ -101,7 +101,7 @@ public class UploadFile {
                     menuList.add(menu);
                     menu = new Menu("4","一级菜单2",false,"0","tid3","target");
                     menuList.add(menu);
-                    menu = new Menu("5","一级菜单3",true,"0","tid3","materialTab");
+                    menu = new Menu("5","物料",true,"0","tid3","App.view.MaterialView");
                     menuList.add(menu);
                     break;
                 }
@@ -111,7 +111,7 @@ public class UploadFile {
                     menuList.add(menu);
                     menu = new Menu("7","二级菜单2",true,"5","tid3","target");
                     menuList.add(menu);
-                    menu = new Menu("8","二级菜单3",true,"5","tid3","target");
+                    menu = new Menu("8","供应商",true,"5","tid3","App.view.VendorView");
                     menuList.add(menu);
                     break;
                 }

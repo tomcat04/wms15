@@ -10,7 +10,8 @@ Ext.define('App.controller.TreeMenuController', {
     views: [
         'App.view.TreeMenuView',
         'App.view.DefaultMainView',
-        'App.view.MaterialView'
+        'App.view.MaterialView',
+        'App.view.VendorView'
     ],
 //    stores: [
 //        'App.store.TreeMenuStore'
@@ -45,12 +46,7 @@ Ext.define('App.controller.TreeMenuController', {
             title: title,
             closable: true,
             items: [
-                {
-                    xtype: 'materialTab'
-                },
-                {
-                    xtype: 'textfield'
-                }
+                Ext.create(viewName)
             ]
         });
         parentTabs.setActiveTab(newtab);

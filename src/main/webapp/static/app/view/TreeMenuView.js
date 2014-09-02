@@ -10,7 +10,7 @@ Ext.define("App.view.TreeMenuView", {
     alias : 'widget.mytree',
     heigth: 'auto',
     rootVisible: false,
-    width: 280,
+    width: 200,
     initComponent: function() {
         Ext.apply(this, {
             store: new Ext.data.TreeStore({

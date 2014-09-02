@@ -14,33 +14,36 @@ Ext.define('App.view.Viewport', {
     //布局方式：border
     layout: 'border',
     items: [{
-            title: 'ExtJS案例',
+//            title: 'ExtJS',
             xtype: "panel",
             collapisble: true,
             region: 'north',
             height: 100,
-            html: '说明栏'
+            items: Ext.create('Ext.Toolbar', {
+                items: [
+                    {xtype: 'label', text: '全局搜索：'}, 
+                    {xtype: 'textfield', id: 'KeyWord', emptyText: '输入关键字按Enter搜索'}, 
+                    {text: '搜索', handler: function() 
+                        {
+                            alert("搜索");
+                        }
+                    }
+                ]
+            })
         }, {
             xtype: "userlist",
             region: 'east',
             width: 250,
             layout: 'fit'
         }, {
-//            id:'tabPanel',
-//            xtype: "tabpanel",
-//            items:{
-//                id:'defaultTab',
-//                xtype:'defaultMainTab'
-//            },
-//            title:'jjkjkjj',
             id:'tabPanel',
             xtype:'tabpanel',
+            minTabWidth:90,
             items:[
                 {
                     xtype:'defaultMainTab'
                 }
             ],
-            
             layout: 'fit',
             region: 'center'
         },{
