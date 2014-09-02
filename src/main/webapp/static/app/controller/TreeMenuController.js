@@ -8,7 +8,9 @@
 Ext.define('App.controller.TreeMenuController', {
     extend: 'Ext.app.Controller',
     views: [
-        'App.view.TreeMenuView'
+        'App.view.TreeMenuView',
+        'App.view.DefaultMainView',
+        'App.view.MaterialView'
     ],
 //    stores: [
 //        'App.store.TreeMenuStore'
@@ -18,16 +20,39 @@ Ext.define('App.controller.TreeMenuController', {
         this.control({
             'mytree': {
                 itemclick: function(view, record, item, index, e, eOpts) {
+                    var raw = record.raw;
                     var recordid = record.raw.id;
                     var leaf = record.raw.leaf;
-                    if(leaf){
+                    if (leaf) {//是否是叶子
                         console.log(recordid + ' is leaf');
+                        var tabs = Ext.getCmp('tabPanel');
+                        var n = tabs.getComponent(recordid);
+                        if (n) {//是否已打开
+                            tabs.setActiveTab(recordid);
+                        } else {
+                            console.log('需要创建新tab');
+                            console.log(record.raw);
+                            this.openTab(tabs, raw.id, raw.text, raw.target, n);
+                        }
                     }
                 }
             }
         });
-        function create(recordid){
-            console.log('create : ' + recordid);
-        };
+    },
+    openTab: function(parentTabs, id, title, viewName, n) {
+        var newtab = parentTabs.add({
+            id: id,
+            title: title,
+            closable: true,
+            items: [
+                {
+                    xtype: 'materialTab'
+                },
+                {
+                    xtype: 'textfield'
+                }
+            ]
+        });
+        parentTabs.setActiveTab(newtab);
     }
 });

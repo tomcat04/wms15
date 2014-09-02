@@ -19,6 +19,7 @@ public class Menu {
     private String text;  
     private boolean leaf;  
     private String parentId;
+    private String target;
 
     public String getTid() {
         return tid;
@@ -59,16 +60,25 @@ public class Menu {
     public void setParentId(String parentId) {
         this.parentId = parentId;
     }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
     
     public Menu(){
     };
     
-    public Menu(String id,String tid,String text,boolean  leaf,String parentId){
+    public Menu(String id,String text,boolean leaf,String  parentId,String tid,String target){
         this.id = id;
         this.tid = tid;
         this.text = text;
         this.leaf = leaf;
         this.parentId = parentId;
+        this.target = target;
     }
     public Menu(String id,String text,boolean  leaf,String parentId){
         this.id = id;

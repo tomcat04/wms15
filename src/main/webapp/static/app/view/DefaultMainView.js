@@ -6,15 +6,21 @@
 
 
 Ext.define('App.view.DefaultMainView', {
-    extend: 'Ext.tab.Panel',
+    extend: 'Ext.Panel',
     alias: 'widget.defaultMainTab',
-    title: '默认首页-不可关闭',
     activeTab: 0,
-    plain: true,
-    html:'3333',
-//    items: [
-//    ],
+    title:'是否可关闭',
+    items: [
+        {
+            authHeight: true,
+            layout: 'fit',
+            autoScroll: true,
+            closable: false, //是否可关闭
+            html: '....'
+        }
+    ],
     initComponent: function() {
+        
         console.info('DefaultMainView.initComponent');
         this.callParent();
     }

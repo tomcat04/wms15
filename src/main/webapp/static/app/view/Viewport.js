@@ -21,16 +21,26 @@ Ext.define('App.view.Viewport', {
             height: 100,
             html: '说明栏'
         }, {
-            title: '右侧栏',
-            xtype: "panel",
+            xtype: "userlist",
             region: 'east',
-            items:{
-                xtype:'userlist'
-            },
             width: 250,
             layout: 'fit'
         }, {
-            xtype: "defaultMainTab",
+//            id:'tabPanel',
+//            xtype: "tabpanel",
+//            items:{
+//                id:'defaultTab',
+//                xtype:'defaultMainTab'
+//            },
+//            title:'jjkjkjj',
+            id:'tabPanel',
+            xtype:'tabpanel',
+            items:[
+                {
+                    xtype:'defaultMainTab'
+                }
+            ],
+            
             layout: 'fit',
             region: 'center'
         },{
