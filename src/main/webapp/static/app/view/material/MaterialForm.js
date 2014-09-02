@@ -5,16 +5,10 @@
  */
 
 
-Ext.define('App.view.VendorView', {
+Ext.define('App.view.material.MaterialForm', {
     extend: 'Ext.form.Panel',
-    alias: 'widget.vendorTab',
-    activeTab: 0,
+    alias: 'widget.materialForm',
     frame: true,
-    layout: 'anchor',
-    defaults: {
-        anchor: '100%',
-        margins: '0 0 10 0'
-    },
     items: [{
             xtype: 'fieldcontainer',
             fieldLabel: 'Your Name',
@@ -70,7 +64,7 @@ Ext.define('App.view.VendorView', {
             text: 'Send'
         }],
     initComponent: function() {
-        console.info('DefaultMainView.initComponent');
+        console.info('MaterialForm.initComponent');
         this.callParent();
     }
 });

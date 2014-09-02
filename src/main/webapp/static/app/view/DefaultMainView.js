@@ -9,7 +9,7 @@ Ext.define('App.view.DefaultMainView', {
     extend: 'Ext.Panel',
     alias: 'widget.defaultMainTab',
     activeTab: 0,
-    title:'是否可关闭',
+    title:'默认首页',
     items: [
         {
             authHeight: true,

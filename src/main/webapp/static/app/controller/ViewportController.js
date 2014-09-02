@@ -10,7 +10,9 @@ Ext.define('App.controller.ViewportController', {
     //将Viewport.js添加到控制器
     views:[
         'App.view.Viewport',
-        'App.view.TreeMenuView'
+        'App.view.TreeMenuView',
+        'App.view.material.MaterialForm',
+        'App.view.material.MaterialGrid'
     ],
     stores:[
         'App.store.TreeMenuStore'
