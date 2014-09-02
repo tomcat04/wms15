@@ -8,75 +8,35 @@
 Ext.define('App.view.MaterialView', {
     extend: 'Ext.Panel',
     alias: 'widget.materialTab',
-    activeTab: 0,
-    items: [
-        Ext.create("Ext.panel.Panel", {
-            flex: 0.3,
-            border: false,
-            items: [
-                {
-                    xtype: 'displayfield',
-                    name: 'materialDesc',
-                    value: '',
-                    fieldLabel: '资料等级'
-                },
-                {
-                    xtype: 'displayfield',
-                    name: 'materialDesc',
-                    value: '',
-                    fieldLabel: 'BOM清单'
-                },
-                {
-                    xtype: 'displayfield',
-                    name: 'materialDesc',
-                    value: '',
-                    fieldLabel: '检验规范'
-                },
-                {
-                    xtype: 'displayfield',
-                    name: 'materialDesc',
-                    value: '',
-                    fieldLabel: '检验卡片'
-                }
-
-            ]
-        }),
-        Ext.create("Ext.panel.Panel", {
-            border: false,
-            flex: 0.3,
-            items: [
-                {
-                    xtype: 'displayfield',
-                    name: 'materialDesc',
-                    value: '',
-                    fieldLabel: '规格书'
-                },
-                {
-                    xtype: 'displayfield',
-                    name: 'materialDesc',
-                    value: '',
-                    fieldLabel: '质量协议签订'
-                },
-                {
-                    xtype: 'displayfield',
-                    name: 'materialDesc',
-                    value: '',
-                    fieldLabel: 'PPAP资料'
-                }
-            ]
-
-        }),
-        Ext.create("Ext.panel.Panel", {
-            flex: 0.3,
-            border: false,
-            items: [
-            ]
-        })
-
+    store: 'simpsonsStore',
+    columns: [
+        { text: 'Name',  dataIndex: 'name' },
+        { text: 'Email', dataIndex: 'email', flex: 1 },
+        { text: 'Phone', dataIndex: 'phone' }
     ],
     buttons: [{text: '登陆'}, {text: '取消'}],
     initComponent: function() {
-        console.info('DefaultMainView.initComponent');
+        Ext.create('Ext.data.Store', {
+            storeId: 'simpsonsStore',
+            fields: ['id', 'text', 'target'],
+            data: {'items': [
+                    {'name': 'Lisa', "email": "lisa@simpsons.com", "phone": "555-111-1224"},
+                    {'name': 'Bart', "email": "bart@simpsons.com", "phone": "555-222-1234"},
+                    {'name': 'Homer', "email": "home@simpsons.com", "phone": "555-222-1244"},
+                    {'name': 'Marge', "email": "marge@simpsons.com", "phone": "555-222-1254"}
+                ]},
+            proxy: {
+//                method: 'GET',
+//                type: 'ajax',
+//                url: 'materials',
+                type: 'memory',
+                reader: {
+                    type: 'json',
+                    root: 'items'
+                }
+            }
+        });
+        console.info('MaterialView.initComponent');
         this.callParent();
     }
 });

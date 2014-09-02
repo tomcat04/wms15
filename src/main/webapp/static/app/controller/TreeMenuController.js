@@ -27,12 +27,12 @@ Ext.define('App.controller.TreeMenuController', {
                     if (leaf) {//是否是叶子
                         console.log(recordid + ' is leaf');
                         var tabs = Ext.getCmp('tabPanel');
-                        var n = tabs.getComponent(recordid);
+                        
+                        var n = tabs.getComponent(raw.id);
                         if (n) {//是否已打开
                             tabs.setActiveTab(recordid);
                         } else {
-                            console.log('需要创建新tab');
-                            console.log(record.raw);
+                            console.log('create new tab , tabid: ' + record.raw);
                             this.openTab(tabs, raw.id, raw.text, raw.target, n);
                         }
                     }

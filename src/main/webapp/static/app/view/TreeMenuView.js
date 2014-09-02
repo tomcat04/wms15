@@ -14,10 +14,10 @@ Ext.define("App.view.TreeMenuView", {
     initComponent: function() {
         Ext.apply(this, {
             store: new Ext.data.TreeStore({
-                nodeParam: 'parentId',
+//                nodeParam: 'parentId',
                 proxy: {
-                    method: 'GET',
-                    type: 'ajax',
+//                    method: 'GET',
+                    type: 'rest',
                     url: 'testMenu',
                     reader: {
                         type: 'json',

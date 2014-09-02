@@ -6,6 +6,7 @@
 
 package com.xopera.center.controller;
 
+import com.byd.test.domain.Material;
 import com.byd.test.domain.Menu;
 import com.byd.test.domain.Order;
 import com.byd.test.services.OrderService;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -88,9 +90,9 @@ public class UploadFile {
     
     //获取菜单
     
-    @RequestMapping(value="testMenu", method = RequestMethod.GET)
+    @RequestMapping(value="testMenu/{param}", method = RequestMethod.GET)
     @ResponseBody
-    public List<Menu> testMenu(@ModelAttribute("parentId") String parentId){
+    public List<Menu> testMenu(@PathVariable ("param") String parentId){
         System.out.println("执行菜单查询操作 时间 ： " + new Date());
         System.out.println("查询菜单传入参数 parentId ：" + parentId);
         List<Menu> menuList = new ArrayList<>();
@@ -162,5 +164,21 @@ public class UploadFile {
     @RequestMapping("index")
     public String index(){
         return "index";
+    }
+    
+    @RequestMapping(value="materials", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> materials(){
+        Map<String,Object> map = new HashMap();
+        List<Material> materialList = new ArrayList<>();
+        materialList.add(new Material("123456-00","物料描述663","/app/ppp/lll/dd33d.jpg"));
+        materialList.add(new Material("123457-00","2233","/app/ppp/lll/ddd.jpg"));
+        materialList.add(new Material("123458-00","物44ee料描述","/app/ppp/lll/ddd21.jpg"));
+        materialList.add(new Material("123459-00","物rra料描述","/app/ppp/lll/ddyyd.jpg"));
+        materialList.add(new Material("123450-00","物ffee料描述","/app/ppp/lll/dd1f4d.jpg"));
+        materialList.add(new Material("123416-00","物料fsag描述","/app/ppp/lll/dd5sd.jpg"));
+        materialList.add(new Material("123436-00","物料cds描述","/app/ppp/lll/ddd423.jpg"));
+        map.put("materialList", materialList);
+        return map;
     }
 }

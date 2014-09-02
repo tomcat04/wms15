@@ -7,12 +7,9 @@
 
 Ext.define("App.store.TreeMenuStore", {
     extend: "Ext.data.TreeStore",
-    defaulrRootId:'root',
     requires:'App.model.TreeMenuModel',
-    nodeParam: 'parentId',
     proxy: {
-        method: 'GET',
-        type: 'ajax',
+        type: 'rest',
         url: 'testMenu',
         reader: {
             type: 'json',
@@ -24,8 +21,7 @@ Ext.define("App.store.TreeMenuStore", {
         text: '根节点',
         id: '-1',
         parentId: '-1',
-        expanded: true,
-        leaf: 'root'
+        expanded: true
     },
     autoLoad: true //表格自动加载
 });
