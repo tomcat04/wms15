@@ -8,7 +8,7 @@
 Ext.define('App.controller.MaterialController', {
     extend: 'Ext.app.Controller',
     views: ['App.view.material.MaterialForm'],
-    stores: ['App.store.MaterialStore'],
+    stores: ['MaterialStore'],
     models: ['App.model.MaterialModel'],
     init: function() {
         console.log('MaterialController.init');

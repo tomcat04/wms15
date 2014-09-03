@@ -21,5 +21,5 @@ Ext.define("App.store.MaterialStore", {
                     totalProperty: 'count'
                 }
     },
-    autoLoad: true //表格自动加载
+    autoLoad: false //表格自动加载
 });

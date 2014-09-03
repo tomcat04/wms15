@@ -17,16 +17,16 @@ Ext.define('App.view.material.MaterialGrid', {
     ],
     columnLines: true,
     forceFit: true,
-    store: 'Ext.data.MaterialStore',
+    store: 'MaterialStore',
     initComponent: function() {
-        this.store = Ext.widget('materialStore');
         console.info('MaterialGrid.initComponent');
         this.callParent();
+        this.store.loadPage(1);
     },
     dockedItems: [{
         xtype: 'pagingtoolbar',
-        store: this.store,   // same store GridPanel is using
+        store: 'MaterialStore',   // same store GridPanel is using
         dock: 'bottom',
         displayInfo: true
-    }],
+    }]
 });
