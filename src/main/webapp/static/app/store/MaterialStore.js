@@ -8,6 +8,7 @@
 Ext.define("App.store.MaterialStore", {
     model: 'App.model.MaterialModel',
     extend: "Ext.data.Store",
+    alias: 'widget.materialStore',
     pageSize: 20,
     proxy: {
         type: 'rest',

@@ -9,8 +9,6 @@ Ext.define('App.view.material.MaterialGrid', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.materialGrid',
     frame: false,
-    store: 'simpsonsStore',
-    tbar: [],
     dock: 'top,bottom',
     columns: [
         {text: 'Name', dataIndex: 'name'},
@@ -19,35 +17,39 @@ Ext.define('App.view.material.MaterialGrid', {
     ],
     columnLines: true,
     forceFit: true,
+    store: 'Ext.data.MaterialStore',
     initComponent: function() {
-        Ext.create('Ext.data.Store', {
-            storeId: 'simpsonsStore',
-            fields: ['name', 'email', 'phone'],
-            data: {'items': [
-                    {'name': 'Lisa', "email": "lisa@simpsons.com", "phone": "555-111-1224"},
-                    {'name': 'Bart', "email": "bart@simpsons.com", "phone": "555-222-1234"},
-                    {'name': 'Homer', "email": "home@simpsons.com", "phone": "555-222-1244"},
-                    {'name': 'Marge', "email": "marge@simpsons.com", "phone": "555-222-1254"},
-                    {'name': 'Marge', "email": "marge@simpsons.com", "phone": "555-222-1254"}
-                ]},
-            proxy: {
-//                method: 'GET',
-//                type: 'ajax',
-//                url: 'materials',
-                type: 'memory',
-                reader: {
-                    type: 'json',
-                    root: 'items'
-                }
-            }
-        });
+        this.store = Ext.widget('materialStore');
+        /*Ext.create('Ext.data.Store', {
+         storeId: 'simpsonsStore',
+         fields: ['name', 'email', 'phone'],
+         data: {'items': [
+         {'name': 'Lisa', "email": "lisa@simpsons.com", "phone": "555-111-1224"},
+         {'name': 'Bart', "email": "bart@simpsons.com", "phone": "555-222-1234"},
+         {'name': 'Homer', "email": "home@simpsons.com", "phone": "555-222-1244"},
+         {'name': 'Marge', "email": "marge@simpsons.com", "phone": "555-222-1254"},
+         {'name': 'Marge', "email": "marge@simpsons.com", "phone": "555-222-1254"}
+         ]},
+         proxy: {
+         //                method: 'GET',
+         //                type: 'ajax',
+         //                url: 'materials',
+         type: 'memory',
+         reader: {
+         type: 'json',
+         root: 'items'
+         }
+         }
+         });*/
         console.info('MaterialGrid.initComponent');
         this.callParent();
     },
-    dockedItems: [{
+    dockedItems: [
+        {
             xtype: 'pagingtoolbar',
 //            store: 'MaterialExceptionLogStore', // same store GridPanel is  using  
             dock: 'top',
             displayInfo: true
-        }]
+        }
+    ]
 });
