@@ -39,12 +39,7 @@ Ext.define('App.controller.MaterialController', {
                     }
                 }
             }
-//            'button[id=MaterialExceptionLog_AddBtn]': {
-//                click: function() {
-//                    alert('add');
-//                }
-//            }
         });
     }
-    
+
 });

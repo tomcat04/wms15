@@ -14,7 +14,7 @@ Ext.define("App.store.MaterialStore", {
         url: contextPath+'/materialList',
         reader: {
             type: 'json',
-            root: 'datas'
+            root: 'materialList'
         },
         writer: {
             type: 'json'
