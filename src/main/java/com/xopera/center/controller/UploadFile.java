@@ -168,7 +168,7 @@ public class UploadFile {
     
     @RequestMapping(value="materials", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> materials(){
+    public Map<String,Object> materials(@ModelAttribute("limit") String pageSize,@ModelAttribute("page") String page,@ModelAttribute("start") String start){
         Map<String,Object> map = new HashMap();
         List<Material> materialList = new ArrayList<>();
         materialList.add(new Material("123456-00","物料描述663","/app/ppp/lll/dd33d.jpg"));
@@ -179,6 +179,7 @@ public class UploadFile {
         materialList.add(new Material("123416-00","物料fsag描述","/app/ppp/lll/dd5sd.jpg"));
         materialList.add(new Material("123436-00","物料cds描述","/app/ppp/lll/ddd423.jpg"));
         map.put("materialList", materialList);
+        map.put("count", 20);
         return map;
     }
     @RequestMapping(value="testFormSubmit", method = RequestMethod.POST)

@@ -12,14 +12,23 @@ Ext.define("App.store.MaterialStore", {
     pageSize: 20,
     proxy: {
         type: 'rest',
-        url: contextPath+'/materialList',
-        reader: {
-            type: 'json',
-            root: 'materialList'
-        },
+        //url: contextPath+'/materialList',
+        url: 'materials',
+        reader: 
+            {
+                type: 'json',
+                root: 'materialList'
+
+            }
+//            , 
+//            {
+//                totalProperty: 'total',
+//                root: 'count'
+//            }
+        ,
         writer: {
             type: 'json'
         }
     },
-    autoLoad: false //表格自动加载
+    autoLoad: true //表格自动加载
 });

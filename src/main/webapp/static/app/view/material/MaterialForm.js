@@ -17,34 +17,31 @@ Ext.define('App.view.material.MaterialForm', {
     defaultType: 'textfield',
     frame: true,
     fieldDefaults: {
-                labelAlign: 'right',
+        labelAlign: 'right',
 //                labelWidth: 90,
-                msgTarget: 'qtip'
-            },
-            items: [
-                {
-                    fieldLabel: '物料编号',
-                    allowBlank: true,
-                    emptyText: '物料编号',
-                    name: 'materialCode'
-                },
-                {
-                    fieldLabel: '物料描述',
-                    allowBlank: true,
-                    emptyText: '物料描述',
-                    name: 'materialDesc'
-                },
-                {
-                    fieldLabel: '供应商代码',
-                    allowBlank: true,
-                    emptyText: '供应商代码',
-                    name: 'vendorCode'
-                }
-            ],
+        msgTarget: 'qtip'
+    },
+    items: [
+        {
+            fieldLabel: '物料编号',
+            allowBlank: true,
+            name: 'materialCode'
+        },
+        {
+            fieldLabel: '物料描述',
+            allowBlank: true,
+            name: 'materialDesc'
+        },
+        {
+            fieldLabel: '供应商代码',
+            allowBlank: true,
+            name: 'vendorCode'
+        }
+    ],
     initComponent: function() {
         Ext.apply(this, {
 //            width: 550,
-            
+
             buttonAlign: 'left',
             buttons: [{
                     text: '重置',
