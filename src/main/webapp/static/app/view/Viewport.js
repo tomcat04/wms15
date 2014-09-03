@@ -36,6 +36,7 @@ Ext.define('App.view.Viewport', {
             width: 250,
             layout: 'fit'
         }, {
+            bodyPadding: 20,
             id:'tabPanel',
             xtype:'tabpanel',
             minTabWidth:90,

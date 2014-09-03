@@ -13,7 +13,8 @@ Ext.application({
         'App.controller.TreeMenuController',
         'App.controller.ViewportController',
         'App.controller.UserListController',
-        'App.controller.DefaultMainController'
+        'App.controller.DefaultMainController',
+        'App.controller.MaterialController'
     ],
     //自动加载和实例化Viewport文件
     autoCreateViewport: true,

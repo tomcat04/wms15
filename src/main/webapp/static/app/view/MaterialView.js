@@ -8,10 +8,13 @@
 Ext.define('App.view.MaterialView', {
     extend: 'Ext.Panel',
     alias: 'widget.materialTab',
+    bodyPadding: 20,
     items:[
         {
+            bodyPadding: 20,
             xtype: 'materialForm',
-            layout:'fit'
+            height:150
+//            layout:'fit'
         },
         {
             xtype: 'materialGrid'
