@@ -18,10 +18,10 @@ Ext.define('App.view.material.MaterialForm', {
     frame: true,
     initComponent: function() {
         Ext.apply(this, {
-            width: 550,
+//            width: 550,
             fieldDefaults: {
                 labelAlign: 'right',
-                labelWidth: 90,
+//                labelWidth: 90,
                 msgTarget: 'qtip'
             },
             items: [
@@ -53,6 +53,7 @@ Ext.define('App.view.material.MaterialForm', {
                     scope: this,
                     handler: this.onResetClick
                 }, {
+                    id:'search',
                     text: '搜索',
                     scope: this,
                     handler: this.onSearchClick
@@ -68,7 +69,19 @@ Ext.define('App.view.material.MaterialForm', {
     onSearchClick: function() {
         var form = this.getForm();
         if (form.isValid()) {
-            Ext.MessageBox.alert('Submitted Values', form.getValues(true));
+            this.getForm().submit({
+                clientValidation: true,
+                url: 'testFormSubmit',
+                type: 'rest',
+//                waitTitle: '请稍等...',  
+//                waitMsg: '正在提交信息...',  
+                success: function(form, action) {
+                    Ext.Msg.alert('Success', action.result.msg);
+                },
+                failure: function(form, action) {
+                    Ext.Msg.alert('Failue', action.result.msg);
+                }
+            });
         }
     }
 });
