@@ -171,10 +171,10 @@ public class UploadFile {
     public Map<String,Object> materials(@ModelAttribute("limit") String pageSize,@ModelAttribute("page") String page,@ModelAttribute("start") String start){
         Map<String,Object> map = new HashMap();
         List<Material> materialList = new ArrayList<>();
-        materialList.add(new Material("123456-00","物料描述663","/app/ppp/lll/dd33d.jpg"));
-        materialList.add(new Material("123457-00","2233","/app/ppp/lll/ddd.jpg"));
-        materialList.add(new Material("123458-00","物44ee料描述","/app/ppp/lll/ddd21.jpg"));
-        materialList.add(new Material("123459-00","物rra料描述","/app/ppp/lll/ddyyd.jpg"));
+//        materialList.add(new Material("123456-00","物料描述663","/app/ppp/lll/dd33d.jpg"));
+//        materialList.add(new Material("123457-00","2233","/app/ppp/lll/ddd.jpg"));
+//        materialList.add(new Material("123458-00","物44ee料描述","/app/ppp/lll/ddd21.jpg"));
+//        materialList.add(new Material("123459-00","物rra料描述","/app/ppp/lll/ddyyd.jpg"));
         materialList.add(new Material("123450-00","物ffee料描述","/app/ppp/lll/dd1f4d.jpg"));
         materialList.add(new Material("123416-00","物料fsag描述","/app/ppp/lll/dd5sd.jpg"));
         materialList.add(new Material("123436-00","物料cds描述","/app/ppp/lll/ddd423.jpg"));

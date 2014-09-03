@@ -9,26 +9,17 @@ Ext.define("App.store.MaterialStore", {
     model: 'App.model.MaterialModel',
     extend: "Ext.data.Store",
     alias: 'widget.materialStore',
-    pageSize: 20,
+    pageSize: 3,
     proxy: {
         type: 'rest',
         //url: contextPath+'/materialList',
         url: 'materials',
-        reader: 
-            {
-                type: 'json',
-                root: 'materialList'
-
-            }
-//            , 
-//            {
-//                totalProperty: 'total',
-//                root: 'count'
-//            }
-        ,
-        writer: {
-            type: 'json'
-        }
+        reader:
+                {
+                    type: 'json',
+                    root: 'materialList',
+                    totalProperty: 'count'
+                }
     },
     autoLoad: true //表格自动加载
 });

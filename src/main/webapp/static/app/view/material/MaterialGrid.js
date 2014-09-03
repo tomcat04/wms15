@@ -23,12 +23,10 @@ Ext.define('App.view.material.MaterialGrid', {
         console.info('MaterialGrid.initComponent');
         this.callParent();
     },
-    dockedItems: [
-        {
-            xtype: 'pagingtoolbar',
-//            store: 'MaterialExceptionLogStore', // same store GridPanel is  using  
-            dock: 'top',
-            displayInfo: true
-        }
-    ]
+    dockedItems: [{
+        xtype: 'pagingtoolbar',
+        store: this.store,   // same store GridPanel is using
+        dock: 'bottom',
+        displayInfo: true
+    }],
 });
