@@ -11,6 +11,7 @@ Ext.define('App.view.MaterialView', {
     bodyPadding: 20,
     items:[
         {
+            id:'materialForm',
             bodyPadding: 20,
             xtype: 'materialForm',
             height:150

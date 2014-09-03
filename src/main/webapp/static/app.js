@@ -8,7 +8,7 @@ Ext.Loader.setConfig({enabled: true});
 Ext.QuickTips.init();
 Ext.application({
     name: 'App',
-    appFolder: '/' + (window.location + '').split('/')[3] + '/static/app',  //appFolder: '/wms15/static/js/app',
+    appFolder: '/' + (window.location + '').split('/')[3] + '/static/app', //appFolder: '/wms15/static/js/app',
     controllers: [
         'App.controller.TreeMenuController',
         'App.controller.ViewportController',
