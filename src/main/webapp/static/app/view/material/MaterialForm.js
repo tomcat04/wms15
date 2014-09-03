@@ -8,63 +8,59 @@
 Ext.define('App.view.material.MaterialForm', {
     extend: 'Ext.form.Panel',
     alias: 'widget.materialForm',
+    xtype:'form',
+    fieldDefaults: {
+        labelAlign: 'left',
+        labelWidth: 100,
+        lableHigh:300
+    },
+    defaultType: 'textfield',
     frame: true,
-    items: [{
-            xtype: 'fieldcontainer',
-            fieldLabel: 'Your Name',
-            labelStyle: 'font-weight:bold;padding:0',
-            layout: 'hbox',
-            defaultType: 'textfield',
-            fieldDefaults: {
-                labelAlign: 'top'
-            },
-            items: [{
-                    flex: 1,
-                    name: 'firstName',
-                    fieldLabel: 'First',
-                    allowBlank: false
-                },
-                {
-                    width: 30,
-                    name: 'middleInitial',
-                    fieldLabel: 'MI',
-                    margins: '0 0 0 5'
-                },
-                {
-                    flex: 2,
-                    name: 'lastName',
-                    fieldLabel: 'Last',
-                    allowBlank: false,
-                    margins: '0 0 0 5'
-                }]
+    items: [
+        {
+            id:'materialCode',
+            fieldLabel: '物料编号',
+            allowBlank: true,
+            emptyText: '物料编号',
+            name:'materialCode'
         },
         {
-            xtype: 'textfield',
-            fieldLabel: 'Your Email Address',
-            vtype: 'email',
-            allowBlank: false
+            id:'materialDesc',
+            fieldLabel: '物料描述',
+            allowBlank: true,
+            emptyText: '物料描述',
+            name:'materialDesc'
         },
         {
-            xtype: 'textfield',
-            fieldLabel: 'Subject',
-            allowBlank: false
-        },
-        {
-            xtype: 'textareafield',
-            fieldLabel: 'Message',
-            labelAlign: 'top',
-            height: 120,
-            margin: '0',
-            allowBlank: false
-        }],
+            id:'vendorCode',
+            fieldLabel: '供应商代码',
+            allowBlank: true,
+            emptyText: '供应商代码',
+            name:'vendorCode'
+        }
+    ],
+    buttonAlign:'left',
     buttons: [{
-            text: 'Cancel'
-        },
-        {
-            text: 'Send'
+            text: '重置',
+            scope: this,
+            handler: this.onResetClick
+        }, {
+            text: '查询',
+            scope: this,
+            handler: this.onCompleteClick
         }],
     initComponent: function() {
         console.info('MaterialForm.initComponent');
         this.callParent();
+    },
+    onResetClick: function() {
+        console.info('reset');
+        this.getForm().reset();
+    },
+    onCompleteClick: function() {
+        var form = this.getForm();
+        if (form.isValid()) {
+            Ext.MessageBox.alert('Submitted Values', form.getValues(true));
+        }
     }
 });
