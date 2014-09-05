@@ -16,6 +16,8 @@ import java.util.Date;
  */
 public class Material {
 
+    private static String baseUrl = "http://localhost:8091/wms15";
+    
     private String materialCode;
 
     private String materialDesc;
@@ -62,14 +64,18 @@ public class Material {
     public Material(String materialCode,String materialDesc,String imagUrl,Date date){
         this.materialCode = materialCode;
         this.materialDesc = materialDesc;
-        this.imagUrl = imagUrl;
+        if(imagUrl != null){
+            this.imagUrl = baseUrl + imagUrl;
+        }
         this.date = date;
     }
     
     public Material(String materialCode,String materialDesc,String imagUrl){
         this.materialCode = materialCode;
         this.materialDesc = materialDesc;
-        this.imagUrl = imagUrl;
+        if(imagUrl != null){
+            this.imagUrl = baseUrl + imagUrl;
+        }
         this.date = new Date();
     }
 

@@ -13,7 +13,7 @@ Ext.define("App.model.MaterialModel", {
             type: 'string'
         }, {
             name: 'materialDesc',
-            type: 'string'
+            type: 'auto'
         }, {
             name: 'imagUrl',
             type: 'string'

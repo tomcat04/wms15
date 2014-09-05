@@ -14,7 +14,8 @@ Ext.application({
         'App.controller.ViewportController',
         'App.controller.UserListController',
         'App.controller.DefaultMainController',
-        'App.controller.MaterialController'
+        'App.controller.MaterialController',
+        'App.controller.StatesController'
     ],
     //自动加载和实例化Viewport文件
     autoCreateViewport: true,

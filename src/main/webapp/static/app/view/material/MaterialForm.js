@@ -16,10 +16,12 @@ Ext.define('App.view.material.MaterialForm', {
 //    },
     defaultType: 'textfield',
     frame: true,
+    height : 5050,
     fieldDefaults: {
         labelAlign: 'right',
-//                labelWidth: 90,
-        msgTarget: 'qtip'
+//        msgTarget: 'qtip'
+        msgTarget: 'side'
+//        anchor: 90
     },
     items: [
         {
@@ -30,19 +32,69 @@ Ext.define('App.view.material.MaterialForm', {
         {
             fieldLabel: '物料描述',
             allowBlank: true,
-            name: 'materialDesc'
+            name: 'materialDesc1'
+        },
+//        {
+//            fieldLabel: '供应商代码',
+//            allowBlank: true,
+//            name: 'vendorCode'
+//        },
+        {
+            fieldLabel: '文件上传',
+            allowBlank: true,
+            xtype: 'filefield',
+            name: 'materialDesc',
+            validator: function(value) {
+                var arr = value.split('.');
+                if (arr[arr.length - 1] != 'txt') {
+                    value = null;
+                    return '文件不合法！！！';
+                } else {
+                    return true;
+                }
+            },
+                buttonText: '选择文件'
         },
         {
-            fieldLabel: '供应商代码',
-            allowBlank: true,
-            name: 'vendorCode'
+            xtype: 'combobox',
+            fieldLabel: 'State',
+            name: 'state',
+            valueField: 'materialCode',
+            displayField: 'materialDesc',
+            loadingText: 'loading',
+            editable: false, // 是否编辑
+//            typeAhead: true,
+            mode: 'remote', //默认远程数据加载 
+            emptyText: 'Select a state...',
+            store: new Ext.data.Store({
+                model: 'App.model.StatesModel',
+                proxy: {
+                    type: 'rest',
+                    //url: contextPath+'/materialList',
+                    url: 'materials',
+                    reader:
+                            {
+                                type: 'json',
+                                root: 'materialList',
+                                totalProperty: 'count'
+                            }
+                },
+                autoLoad: true //表格自动加载
+            })
+        },
+        {
+            xtype: 'datefield',
+            fieldLabel: 'Date of Birth',
+            name: 'dob',
+            allowBlank: false,
+            maxValue: new Date()
         }
     ],
     initComponent: function() {
         Ext.apply(this, {
 //            width: 550,
 
-            buttonAlign: 'left',
+            buttonAlign: 'center',
             buttons: [{
                     text: '重置',
                     scope: this,

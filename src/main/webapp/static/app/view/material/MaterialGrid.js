@@ -11,9 +11,25 @@ Ext.define('App.view.material.MaterialGrid', {
     frame: false,
     
     columns: [
-        {text: '物料编码', dataIndex: 'materialCode'},
-        {text: '物料描述', dataIndex: 'materialCode'},
-        {text: '图片', dataIndex: 'imagUrl'}
+        {
+            text: '物料编码', 
+            dataIndex: 'materialCode'
+        },
+        {
+            text: '物料描述', 
+            dataIndex: 'materialDesc'
+        },
+        {
+            text: '图片', 
+            dataIndex: 'imagUrl',
+            renderer : function(value) {
+                if(value)
+                    return '<img src =  ' + value + '></img>';
+                else
+                    console.info(contextPath);
+                    return '<a target="_blank" href="http://localhost:8091/wms15/app/xopera/testAjax">' + '测试文件下载路径' + '</a>';
+            }
+        }
     ],
     columnLines: true,
     forceFit: true,
@@ -21,7 +37,10 @@ Ext.define('App.view.material.MaterialGrid', {
     initComponent: function() {
         console.info('MaterialGrid.initComponent');
         this.callParent();
-        this.store.loadPage(1);
+//        this.store.remove();
+        this.store.removeAll();
+//        this.store.reload();
+//        this.store.loadPage(1);
     },
     dockedItems: [{
         xtype: 'pagingtoolbar',

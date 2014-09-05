@@ -30,12 +30,14 @@ Ext.define('App.view.Viewport', {
                     }
                 ]
             })
-        }, {
-            xtype: "userlist",
-            region: 'east',
-            width: 250,
-            layout: 'fit'
-        }, {
+        }
+//        , {
+//            xtype: "userlist",
+//            region: 'east',
+//            width: 250,
+//            layout: 'fit'
+//        }
+        , {
             bodyPadding: 20,
             id:'tabPanel',
             xtype:'tabpanel',

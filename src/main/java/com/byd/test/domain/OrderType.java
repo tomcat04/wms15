@@ -34,5 +34,8 @@ public enum OrderType {
         Order order = new Order();
         order.setPrice(OrderType.LIU);
         System.out.println("--------: " + order.getPrice());
+        
+        String s = System.getenv("TOMCAT_HOMTE");
+        System.out.println("ssssssssssssssssss" + s);
     }
 }

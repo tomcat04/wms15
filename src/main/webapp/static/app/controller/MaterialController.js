@@ -22,7 +22,13 @@ Ext.define('App.controller.MaterialController', {
                     console.log('MaterialController.search.click');
                     //var form = Ext.widget('materialForm');//Ext.getCmp('App.view.material.MaterialForm');
                     var form = Ext.getCmp('materialForm');
-                    if (form.isValid()) {
+                    var params = form.items.items;
+                    var store =  Ext.StoreManager.lookup('MaterialStore');
+                    store.getProxy().setExtraParam('materialCode',form.getValues().materialCode);
+                    store.getProxy().setExtraParam('materialDesc',form.getValues().materialDesc);
+//                    store.getProxy().setExtraParam('material',Ext.JSON.encode(form.getValues()));
+                    store.load();
+                    /*if (form.isValid()) {
                         form.submit({
                             clientValidation: true,
                             url: 'testFormSubmit',
@@ -36,7 +42,7 @@ Ext.define('App.controller.MaterialController', {
                                 Ext.Msg.alert('Failue', action.result.materialList);
                             }
                         });
-                    }
+                    }*/
                 }
             }
         });
