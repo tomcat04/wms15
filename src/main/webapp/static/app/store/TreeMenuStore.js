@@ -7,15 +7,15 @@
 
 Ext.define("App.store.TreeMenuStore", {
     extend: "Ext.data.TreeStore",
-//    requires:'App.model.TreeMenuModel',
+    requires:'App.model.TreeMenuModel',
     alias: 'widget.treeMenuStore',
     proxy: {
         type: 'rest',
         url: 'testMenu',
         reader: {
             type: 'json',
-            root: 'menuList',
-            autoLoad:true
+            root: 'menuList'
+//            autoLoad:true
         }
     },
     root: {
@@ -24,5 +24,5 @@ Ext.define("App.store.TreeMenuStore", {
         parentId: '-1',
         expanded: true
     },
-    autoLoad: true //表格自动加载
+    autoLoad: false //表格自动加载
 });

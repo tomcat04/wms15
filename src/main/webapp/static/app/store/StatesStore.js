@@ -19,5 +19,5 @@ Ext.define("App.store.StatesStore", {
         }
     },
     fields: [ 'materialCode','materialDesc'],
-    autoLoad: true //表格自动加载
+    autoLoad: false //表格自动加载
 });

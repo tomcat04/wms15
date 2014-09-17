@@ -83,4 +83,6 @@
         <property name="targetMethod"  value="quartz"/>
         <property name="concurrent" value="false"/>
     </bean>
+    
+    <import resource="/spring-bean.xml"/>
 </beans>

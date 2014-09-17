@@ -6,10 +6,12 @@
 
 package com.xopera.center.controller;
 
+import com.byd.test.bean.BaseURL;
 import com.byd.test.domain.Material;
 import com.byd.test.domain.Menu;
 import com.byd.test.domain.Order;
 import com.byd.test.services.OrderService;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,7 +20,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
+import javax.servlet.ServletConfig;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,8 +45,28 @@ public class UploadFile {
     @Resource
     private OrderService orderService;
     
+    @Autowired
+    private BaseURL baseURL;
+    
+    @Autowired  
+    private  HttpServletRequest request;
+    
     @RequestMapping("main")
     public ModelAndView helloworld(HttpServletRequest req){
+        System.out.println("++++ " + baseURL.getUrl());
+        String s = request.getServletContext().getRealPath("/");
+        String s1 = request.getContextPath();
+        File file = new File(s);
+        String parentFile = file.getParent();
+        System.out.println("parentFile : " + parentFile);
+        File f1 = new File(parentFile);
+        System.out.println("999" + f1.getPath());
+        System.out.println("****" + s1);
+        System.out.println("----" + s);
+        File f2 = new File(parentFile + "\\\\" + "oooo" );
+        boolean b = f2.mkdirs();
+        File imag = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\菊花.jpg");
+        System.out.println("bbbb " + b);
         List<Order> orderList = null;
 //        try {
 //            //orderList = orderService.selectAll();
@@ -174,7 +198,7 @@ public class UploadFile {
         List<Material> materialList = new ArrayList<>();
 //        materialList.add(new Material("123456-00","物料描述663","/app/ppp/lll/dd33d.jpg"));
 //        materialList.add(new Material("123457-00","2233","/app/ppp/lll/ddd.jpg"));
-        materialList.add(new Material("123458-00","物44ee料描述","/static/img/loading/loading/001.gif"));
+        materialList.add(new Material("123458-00","物44ee料描述","static/img/loading/loading/001.gif"));
         materialList.add(new Material("123459-00","物rra料描述",null));
         materialList.add(new Material("123450-00","物ffee料描述","/static/img/baidu_jgylogo3.gif"));
         materialList.add(new Material("123416-00","物料fsag描述",null));

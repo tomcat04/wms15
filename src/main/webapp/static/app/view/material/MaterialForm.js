@@ -16,7 +16,6 @@ Ext.define('App.view.material.MaterialForm', {
 //    },
     defaultType: 'textfield',
     frame: true,
-    height : 5050,
     fieldDefaults: {
         labelAlign: 'right',
 //        msgTarget: 'qtip'
@@ -66,7 +65,8 @@ Ext.define('App.view.material.MaterialForm', {
 //            typeAhead: true,
             mode: 'remote', //默认远程数据加载 
             emptyText: 'Select a state...',
-            store: new Ext.data.Store({
+            store:Ext.create('App.store.StatesStore')
+            /*store: new Ext.data.Store({
                 model: 'App.model.StatesModel',
                 proxy: {
                     type: 'rest',
@@ -79,14 +79,15 @@ Ext.define('App.view.material.MaterialForm', {
                                 totalProperty: 'count'
                             }
                 },
-                autoLoad: true //表格自动加载
-            })
+                fields: [ 'materialCode','materialDesc'],
+                autoLoad: false //表格自动加载
+            })*/
         },
         {
             xtype: 'datefield',
             fieldLabel: 'Date of Birth',
             name: 'dob',
-            allowBlank: false,
+//            allowBlank: false,
             maxValue: new Date()
         }
     ],
