@@ -17,6 +17,10 @@ Ext.define("App.model.MaterialModel", {
         }, {
             name: 'imagUrl',
             type: 'string'
-        }]
+        },{
+            name:'fileSrc',
+            type:'string'
+        }
+    ]
 //    idProperty: 'id'// 关系到表格修改数据的获取  
 });

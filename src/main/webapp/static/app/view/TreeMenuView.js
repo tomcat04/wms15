@@ -11,9 +11,9 @@ Ext.define("App.view.TreeMenuView", {
     heigth: 'auto',
     rootVisible: false,
     width: 200,
-    store: 'Ext.data.TreeStore',
+    store: Ext.create('App.store.TreeMenuStore'),
     initComponent: function() {
-        this.store = Ext.widget('treeMenuStore');
+//        this.store = Ext.widget('treeMenuStore');
         this.callParent();
     },
     border: false

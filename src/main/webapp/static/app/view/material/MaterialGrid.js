@@ -38,9 +38,9 @@ Ext.define('App.view.material.MaterialGrid', {
         console.info('MaterialGrid.initComponent');
         this.callParent();
 //        this.store.remove();
-        this.store.removeAll();
+//        this.store.removeAll();
 //        this.store.reload();
-//        this.store.loadPage(1);
+        this.store.loadPage(1);
     },
     dockedItems: [{
         xtype: 'pagingtoolbar',

@@ -6,8 +6,9 @@
 
 
 Ext.define("App.store.StatesStore", {
-    model: 'App.model.StatesModel',
+//    model: 'App.model.StatesModel',
     extend: 'Ext.data.Store',
+    requires:'App.model.StatesModel',
     alias: 'widget.statesStore',
     storeId: 'states',
     proxy: {

@@ -6,6 +6,7 @@
 
 
 Ext.define("App.store.TreeMenuStore", {
+//    model: 'App.model.TreeMenuModel',
     extend: "Ext.data.TreeStore",
     requires:'App.model.TreeMenuModel',
     alias: 'widget.treeMenuStore',
@@ -24,5 +25,5 @@ Ext.define("App.store.TreeMenuStore", {
         parentId: '-1',
         expanded: true
     },
-    autoLoad: false //表格自动加载
+    autoLoad: true //表格自动加载
 });

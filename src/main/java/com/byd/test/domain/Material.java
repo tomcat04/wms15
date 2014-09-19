@@ -24,6 +24,8 @@ public class Material {
 
     private String imagUrl;
 
+    private String fileUrl;
+    
     private Date date;
 
     public String getMaterialCode() {
@@ -77,6 +79,22 @@ public class Material {
             this.imagUrl = baseUrl + imagUrl;
         }
         this.date = new Date();
+    }
+
+    public static String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public static void setBaseUrl(String baseUrl) {
+        Material.baseUrl = baseUrl;
+    }
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 
 }

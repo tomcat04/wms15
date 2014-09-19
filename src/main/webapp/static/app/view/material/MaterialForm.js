@@ -31,28 +31,25 @@ Ext.define('App.view.material.MaterialForm', {
         {
             fieldLabel: '物料描述',
             allowBlank: true,
-            name: 'materialDesc1'
+            name: 'materialDesc'
         },
-//        {
-//            fieldLabel: '供应商代码',
-//            allowBlank: true,
-//            name: 'vendorCode'
-//        },
         {
             fieldLabel: '文件上传',
             allowBlank: true,
             xtype: 'filefield',
-            name: 'materialDesc',
-            validator: function(value) {
-                var arr = value.split('.');
-                if (arr[arr.length - 1] != 'txt') {
-                    value = null;
-                    return '文件不合法！！！';
-                } else {
-                    return true;
-                }
-            },
-                buttonText: '选择文件'
+            name: 'fileSrc',
+//            regex:/^([\w]+)(.[\w]+)*@([\w-]+\.){1,5}([A-Za-z]){2,4}$/,  
+//            regexText:'用户格式错误',                 //javascript正则表达式验证失败错误信息提示  
+//            validator: function(value) {
+//                var arr = value.split('.');
+//                if (arr[arr.length - 1] != 'txt') {
+//                    value = null;
+//                    return '文件不合法！！！';
+//                } else {
+//                    return true;
+//                }
+//            },
+            buttonText: '选择文件'
         },
         {
             xtype: 'combobox',
