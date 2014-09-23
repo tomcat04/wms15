@@ -18,7 +18,8 @@ Ext.define('App.view.MaterialView', {
 //            layout:'fit'
         },
         {
-            xtype: 'materialGrid'
+            xtype: 'materialGrid',
+            layout:'fit'
         }
     ]
 });

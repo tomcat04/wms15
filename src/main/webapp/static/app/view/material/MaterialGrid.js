@@ -9,7 +9,7 @@ Ext.define('App.view.material.MaterialGrid', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.materialGrid',
     frame: false,
-    
+    layout:'fit',
     columns: [
         {
             text: '物料编码', 
@@ -24,11 +24,16 @@ Ext.define('App.view.material.MaterialGrid', {
             dataIndex: 'imagUrl',
             renderer : function(value) {
                 if(value)
-                    return '<img src =  ' + value + '></img>';
+                    return '<img src =  ' + value + '>99</img>';
                 else
                     console.info(contextPath);
                     return '<a target="_blank" href="http://localhost:8091/wms15/app/xopera/testAjax">' + '测试文件下载路径' + '</a>';
-            }
+            },
+            listeners : { // 该项载入加载照片
+                'render' : function(_filed) {
+                       _filed.getEl().dom.src = "qing.jpg";//图片路径预先store读取赋给变量给
+                   }     //态显示图片
+ }
         }
     ],
     columnLines: true,
@@ -38,14 +43,24 @@ Ext.define('App.view.material.MaterialGrid', {
         console.info('MaterialGrid.initComponent');
         this.callParent();
 //        this.store.remove();
-//        this.store.removeAll();
+        this.store.clear;
 //        this.store.reload();
+        var s = this.store.getProxy().extraParams;
+        console.info('s: ' + s);
         this.store.loadPage(1);
     },
-    dockedItems: [{
-        xtype: 'pagingtoolbar',
-        store: 'MaterialStore',   // same store GridPanel is using
-        dock: 'bottom',
-        displayInfo: true
-    }]
+    dockedItems: [
+        {
+            xtype: 'pagingtoolbar',
+            store: 'MaterialStore',   // same store GridPanel is using
+            dock: 'bottom',
+            displayInfo: true
+        },
+        {
+            xtype: 'pagingtoolbar',
+            store: 'MaterialStore',   // same store GridPanel is using
+            dock: 'top',
+            displayInfo: true
+        }
+    ]
 });
