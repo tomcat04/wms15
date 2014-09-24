@@ -16,6 +16,7 @@ Ext.define('App.view.material.AddForm', {
     },
     items: [
         {
+            id:'materialCode',
             fieldLabel: '物料编号',
             allowBlank: true,
             name: 'materialCode'
@@ -29,7 +30,7 @@ Ext.define('App.view.material.AddForm', {
             fieldLabel: '文件上传',
             allowBlank: true,
             xtype: 'filefield',
-            name: 'fileSrc',
+            name: 'file',
             buttonText: '选择文件'
         },
         {
@@ -43,13 +44,6 @@ Ext.define('App.view.material.AddForm', {
             mode: 'remote', //默认远程数据加载 
             emptyText: 'Select a state...',
             store:Ext.create('App.store.StatesStore')
-        },
-        {
-            xtype: 'datefield',
-            fieldLabel: 'Date of Birth',
-            name: 'dob',
-            allowBlank: true,
-            maxValue: new Date()
         }
     ],
     initComponent: function() {

@@ -72,15 +72,15 @@ Ext.define('App.controller.MaterialController', {
                     if (form.isValid()) {
                         form.submit({
                             clientValidation: true,
-                            url: 'testFormSubmit',
+                            url: 'formSubmit',
                             type: 'rest',
                             waitTitle: '请稍等...',  
                             waitMsg: '正在提交信息...',  
                             success: function(form, action) {
-                                Ext.Msg.alert('Success', action.result.materialList);
+                                //Ext.Msg.alert('Success', action.result.materialList);
                             },
                             failure: function(form, action) {
-                                Ext.Msg.alert('Failue', action.result.materialList);
+                                //Ext.Msg.alert('Failue', action.result.materialList);
                             }
                         });
                     }
