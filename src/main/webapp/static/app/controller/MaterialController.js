@@ -7,10 +7,24 @@
 
 Ext.define('App.controller.MaterialController', {
     extend: 'Ext.app.Controller',
-    views: ['App.view.material.MaterialForm'],
+    views: [
+        'App.view.material.MaterialForm',
+        'App.view.material.MaterialGrid',
+        'App.view.material.AddForm'
+    ],
     stores: ['MaterialStore'],
     models: ['App.model.MaterialModel'],
     init: function() {
+        var win = Ext.create('Ext.window.Window',{
+                        title: 'Hello',
+                        height: 200,
+                        width: 400,
+                        layout: 'fit',
+                        items:{
+                            id:'addForm',
+                            xtype:'addForm'
+                        }
+                    });
         console.log('MaterialController.init');
         this.control({
             'button[name=searchMaterial]': {
@@ -43,6 +57,36 @@ Ext.define('App.controller.MaterialController', {
                             }
                         });
                     }*/
+                }
+            },
+            'button[name=add]': {
+                click: function() {
+                    console.info('add button');
+                    
+                    win.show();
+                }
+            },
+            'button[name=submit]': {
+                click: function() {
+                    var form = Ext.getCmp('addForm');
+                    if (form.isValid()) {
+                        form.submit({
+                            clientValidation: true,
+                            url: 'testFormSubmit',
+                            type: 'rest',
+                            waitTitle: '请稍等...',  
+                            waitMsg: '正在提交信息...',  
+                            success: function(form, action) {
+                                Ext.Msg.alert('Success', action.result.materialList);
+                            },
+                            failure: function(form, action) {
+                                Ext.Msg.alert('Failue', action.result.materialList);
+                            }
+                        });
+                    }
+                    win.hide();
+                    var store =  Ext.StoreManager.lookup('MaterialStore');
+                    store.reload();
                 }
             }
         });

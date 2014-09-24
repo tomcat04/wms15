@@ -84,7 +84,7 @@ Ext.define('App.view.material.MaterialForm', {
             xtype: 'datefield',
             fieldLabel: 'Date of Birth',
             name: 'dob',
-//            allowBlank: false,
+            allowBlank: true,
             maxValue: new Date()
         }
     ],

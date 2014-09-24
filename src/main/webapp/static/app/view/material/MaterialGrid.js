@@ -9,8 +9,15 @@ Ext.define('App.view.material.MaterialGrid', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.materialGrid',
     frame: false,
+    autoHeight : true,
     layout:'fit',
     columns: [
+        {
+            xtype: 'rownumberer'
+        },
+        {
+            xtype: 'checkcolumn'
+        },
         {
             text: '物料编码', 
             dataIndex: 'materialCode'
@@ -22,18 +29,20 @@ Ext.define('App.view.material.MaterialGrid', {
         {
             text: '图片', 
             dataIndex: 'imagUrl',
+            autoHeight : true,
             renderer : function(value) {
                 if(value)
                     return '<img src =  ' + value + '>99</img>';
                 else
                     console.info(contextPath);
                     return '<a target="_blank" href="http://localhost:8091/wms15/app/xopera/testAjax">' + '测试文件下载路径' + '</a>';
-            },
-            listeners : { // 该项载入加载照片
-                'render' : function(_filed) {
-                       _filed.getEl().dom.src = "qing.jpg";//图片路径预先store读取赋给变量给
-                   }     //态显示图片
- }
+            }
+//            ,
+//            listeners : { // 该项载入加载照片
+//                'render' : function(_filed) {
+//                       _filed.getEl().dom.src = "qing.jpg";//图片路径预先store读取赋给变量给
+//                   }     //态显示图片
+// }
         }
     ],
     columnLines: true,
@@ -51,6 +60,18 @@ Ext.define('App.view.material.MaterialGrid', {
     },
     dockedItems: [
         {
+            xtype: 'toolbar',
+            dock: 'top',
+            
+            items: [
+                { 
+                    xtype: 'button', 
+                    text: '添加数据',
+                    name:'add'
+                }
+            ]
+        },
+        {
             xtype: 'pagingtoolbar',
             store: 'MaterialStore',   // same store GridPanel is using
             dock: 'bottom',
@@ -62,5 +83,6 @@ Ext.define('App.view.material.MaterialGrid', {
             dock: 'top',
             displayInfo: true
         }
+        
     ]
 });

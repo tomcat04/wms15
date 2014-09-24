@@ -198,11 +198,11 @@ public class UploadFile {
         List<Material> materialList = new ArrayList<>();
 //        materialList.add(new Material("123456-00","物料描述663","/app/ppp/lll/dd33d.jpg"));
 //        materialList.add(new Material("123457-00","2233","/app/ppp/lll/ddd.jpg"));
-        materialList.add(new Material("123458-00","物44ee料描述","static/img/loading/loading/001.gif"));
+        materialList.add(new Material("123458-00","物44ee料描述","sta11tic/img/loading/loading/001.gif"));
         materialList.add(new Material("123459-00","物rra料描述",null));
-        materialList.add(new Material("123450-00","物ffee料描述","/static/img/baidu_jgylogo3.gif"));
+        materialList.add(new Material("123450-00","物ffee料描述","/stat11ic/img/baidu_jgylogo3.gif"));
         materialList.add(new Material("123416-00","物料fsag描述",null));
-        materialList.add(new Material("123436-00","物料cds描述","/app/ppp/lll/ddd423.jpg"));
+        materialList.add(new Material("123436-00","物料cds描述","/a11pp/ppp/lll/ddd423.jpg"));
         materialList.add(material);
         map.put("materialList", materialList);
         map.put("count", 20);
