@@ -12,7 +12,12 @@ import com.byd.test.domain.Material;
 import com.byd.test.domain.Menu;
 import com.byd.test.domain.Order;
 import com.byd.test.services.OrderService;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,6 +34,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -65,16 +71,7 @@ public class UploadFile {
         System.out.println("----" + s);
         File f2 = new File(parentFile + "\\\\" + "oooo" );
         boolean b = f2.mkdirs();
-        File imag = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\菊花.jpg");
-        System.out.println("bbbb " + b);
-        List<Order> orderList = null;
-//        try {
-//            //orderList = orderService.selectAll();
-//            //System.out.println("orderList.size    " + orderList.size());
-//        } catch (Exception ex) {
-//            Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        System.out.println("sdddddds");
+        File img = new File("C:\\Users\\Public\\Pictures\\Sample Pictures\\菊花.jpg");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("center/main");
         mv.addObject("size",365);
@@ -243,19 +240,40 @@ public class UploadFile {
     }
     
     @RequestMapping(value="formSubmit", method = RequestMethod.POST)
-//    @ResponseBody
-    public void materialsTe(MaterialBean materialBean){
+    @ResponseBody
+    public Map<String,Object> materialsTe(MaterialBean materialBean){
         Map<String,Object> map = new HashMap();
-        List<Material> materialList = new ArrayList<>();
-        materialList.add(new Material("123456-00","物料描述663","/app/ppp/lll/dd33d.jpg"));
-        materialList.add(new Material("123457-00","2233","/app/ppp/lll/ddd.jpg"));
-        materialList.add(new Material("123458-00","物44ee料描述","/app/ppp/lll/ddd21.jpg"));
-        materialList.add(new Material("123459-00","物rra料描述","/app/ppp/lll/ddyyd.jpg"));
-        materialList.add(new Material("123450-00","物ffee料描述","/app/ppp/lll/dd1f4d.jpg"));
-        materialList.add(new Material("123416-00","物料fsag描述","/app/ppp/lll/dd5sd.jpg"));
-        materialList.add(new Material("123436-00","物料cds描述","/app/ppp/lll/ddd423.jpg"));
-        map.put("materialList", materialList);
-        map.put("success", "success");
-//        return map;
+        DataOutputStream out = null;
+        try {
+            CommonsMultipartFile f = materialBean.getFile();
+            String s = request.getServletContext().getRealPath("/");
+            File file = new File(s);
+            String parentFile = file.getParent();
+            System.out.println("parentFile : " + parentFile);
+            File f1 = new File(parentFile);
+            String fileAbsPath = parentFile;
+            out = new DataOutputStream(new FileOutputStream(fileAbsPath));
+            
+            InputStream is = null;// 附件输入流
+            is = f.getInputStream();
+            byte[] buffer = new byte[is.available()];
+//            while (is.read(buffer) > 0) {
+//                out.write(buffer);// 写入磁盘；
+//            }
+            is.read(buffer);
+            out.write(buffer);
+            map.put("success", "success");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                out.close();
+            } catch (IOException ex) {
+                Logger.getLogger(UploadFile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return map;
     }
 }

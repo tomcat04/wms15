@@ -24,6 +24,10 @@ Ext.define('App.view.material.MaterialForm', {
     },
     items: [
         {
+            xtype:'box'
+            
+        },
+        {
             fieldLabel: '物料编号',
             allowBlank: true,
             name: 'materialCode'
@@ -63,22 +67,6 @@ Ext.define('App.view.material.MaterialForm', {
             mode: 'remote', //默认远程数据加载 
             emptyText: 'Select a state...',
             store:Ext.create('App.store.StatesStore')
-            /*store: new Ext.data.Store({
-                model: 'App.model.StatesModel',
-                proxy: {
-                    type: 'rest',
-                    //url: contextPath+'/materialList',
-                    url: 'materials',
-                    reader:
-                            {
-                                type: 'json',
-                                root: 'materialList',
-                                totalProperty: 'count'
-                            }
-                },
-                fields: [ 'materialCode','materialDesc'],
-                autoLoad: false //表格自动加载
-            })*/
         },
         {
             xtype: 'datefield',

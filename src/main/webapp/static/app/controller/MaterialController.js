@@ -62,7 +62,8 @@ Ext.define('App.controller.MaterialController', {
             'button[name=add]': {
                 click: function() {
                     console.info('add button');
-                    
+//                    var form = Ext.getCmp('addForm');
+//                    form.reset();
                     win.show();
                 }
             },
@@ -77,6 +78,11 @@ Ext.define('App.controller.MaterialController', {
                             waitTitle: '请稍等...',  
                             waitMsg: '正在提交信息...',  
                             success: function(form, action) {
+                                if(action.result.success){
+                                    console.info('shangchaun chenggong');
+                                }else{
+                                    console.info('shangchuan shibai');
+                                }
                                 //Ext.Msg.alert('Success', action.result.materialList);
                             },
                             failure: function(form, action) {

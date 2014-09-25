@@ -16,7 +16,8 @@ Ext.define('App.view.material.MaterialGrid', {
             xtype: 'rownumberer'
         },
         {
-            xtype: 'checkcolumn'
+            xtype: 'checkcolumn',
+            width : 10
         },
         {
             text: '物料编码', 
