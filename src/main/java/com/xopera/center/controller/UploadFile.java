@@ -59,7 +59,6 @@ public class UploadFile {
     
     @RequestMapping("main")
     public ModelAndView helloworld(HttpServletRequest req){
-        System.out.println("++++ " + baseURL.getUrl());
         String s = request.getServletContext().getRealPath("/");
         String s1 = request.getContextPath();
         File file = new File(s);
@@ -195,7 +194,7 @@ public class UploadFile {
         List<Material> materialList = new ArrayList<>();
 //        materialList.add(new Material("123456-00","物料描述663","/app/ppp/lll/dd33d.jpg"));
 //        materialList.add(new Material("123457-00","2233","/app/ppp/lll/ddd.jpg"));
-        materialList.add(new Material("123458-00","物44ee料描述","sta11tic/img/loading/loading/001.gif"));
+        materialList.add(new Material("123458-00","物44ee料描述",baseURL.getServerLocation() + "baidu_jgylogo3.gif"));
         materialList.add(new Material("123459-00","物rra料描述",null));
         materialList.add(new Material("123450-00","物ffee料描述","/stat11ic/img/baidu_jgylogo3.gif"));
         materialList.add(new Material("123416-00","物料fsag描述",null));
@@ -247,19 +246,15 @@ public class UploadFile {
         try {
             CommonsMultipartFile f = materialBean.getFile();
             String s = request.getServletContext().getRealPath("/");
+            System.out.println("ssssssssss : " + s);
             File file = new File(s);
             String parentFile = file.getParent();
             System.out.println("parentFile : " + parentFile);
-            File f1 = new File(parentFile);
-            String fileAbsPath = parentFile;
+            String fileAbsPath = baseURL.getFileLocation() + f.getOriginalFilename();
             out = new DataOutputStream(new FileOutputStream(fileAbsPath));
-            
             InputStream is = null;// 附件输入流
             is = f.getInputStream();
             byte[] buffer = new byte[is.available()];
-//            while (is.read(buffer) > 0) {
-//                out.write(buffer);// 写入磁盘；
-//            }
             is.read(buffer);
             out.write(buffer);
             map.put("success", "success");

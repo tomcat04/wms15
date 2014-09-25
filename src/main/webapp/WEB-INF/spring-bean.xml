@@ -11,7 +11,8 @@
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
     <bean id="baseURL" class="com.byd.test.bean.BaseURL" >
-        <property name="url" value="10.9.68.8"></property>
+        <property name="fileLocation" value="C:\softeware install\Tomcat 7.0\webapps\img\"></property>
+        <property name="serverLocation" value="http://localhost/img/"></property>
     </bean>
 
 </beans>

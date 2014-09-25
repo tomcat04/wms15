@@ -15,14 +15,23 @@ package com.byd.test.bean;
  */
 public class BaseURL {
 
-    private String url;
+    private String fileLocation;
+    private String serverLocation;
 
-    public String getUrl() {
-        return url;
+    public String getFileLocation() {
+        return fileLocation;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setFileLocation(String fileLocation) {
+        this.fileLocation = fileLocation;
+    }
+
+    public String getServerLocation() {
+        return serverLocation;
+    }
+
+    public void setServerLocation(String serverLocation) {
+        this.serverLocation = serverLocation;
     }
     
 }

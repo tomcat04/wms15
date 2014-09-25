@@ -33,7 +33,7 @@ Ext.define('App.view.material.MaterialGrid', {
             autoHeight : true,
             renderer : function(value) {
                 if(value)
-                    return '<img src =  ' + value + '>99</img>';
+                    return '<img src =  ' + value + '></img>';
                 else
                     console.info(contextPath);
                     return '<a target="_blank" href="http://localhost:8091/wms15/app/xopera/testAjax">' + '测试文件下载路径' + '</a>';

@@ -5,7 +5,9 @@
  */
 package com.byd.test.domain;
 
+import com.byd.test.bean.BaseURL;
 import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -66,27 +68,21 @@ public class Material {
     public Material(String materialCode,String materialDesc,String imagUrl,Date date){
         this.materialCode = materialCode;
         this.materialDesc = materialDesc;
-        if(imagUrl != null){
-            this.imagUrl = baseUrl + imagUrl;
-        }
+        this.imagUrl = imagUrl;
+//        if(imagUrl != null){
+//            this.imagUrl = baseUrl + imagUrl;
+//        }
         this.date = date;
     }
     
     public Material(String materialCode,String materialDesc,String imagUrl){
         this.materialCode = materialCode;
         this.materialDesc = materialDesc;
-        if(imagUrl != null){
-            this.imagUrl = baseUrl + imagUrl;
-        }
+        this.imagUrl = imagUrl;
+//        if(imagUrl != null){
+//            this.imagUrl = baseUrl + imagUrl;
+//        }
         this.date = new Date();
-    }
-
-    public static String getBaseUrl() {
-        return baseUrl;
-    }
-
-    public static void setBaseUrl(String baseUrl) {
-        Material.baseUrl = baseUrl;
     }
 
     public String getFileUrl() {
