@@ -20,6 +20,7 @@ Ext.define('App.controller.MaterialController', {
                         height: 200,
                         width: 400,
                         layout: 'fit',
+                        modal:true,
                         items:{
                             id:'addForm',
                             xtype:'addForm'
@@ -41,7 +42,8 @@ Ext.define('App.controller.MaterialController', {
                     store.getProxy().setExtraParam('materialCode',form.getValues().materialCode);
                     store.getProxy().setExtraParam('materialDesc',form.getValues().materialDesc);
 //                    store.getProxy().setExtraParam('material',Ext.JSON.encode(form.getValues()));
-                    store.load();
+                    //store.load();
+                    store.loadPage(1);
                     /*if (form.isValid()) {
                         form.submit({
                             clientValidation: true,

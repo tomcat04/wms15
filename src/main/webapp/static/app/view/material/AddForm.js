@@ -18,7 +18,8 @@ Ext.define('App.view.material.AddForm', {
         {
             id:'materialCode',
             fieldLabel: '物料编号',
-            allowBlank: true,
+//            allowBlank: true,
+            require:true,
             name: 'materialCode'
         },
         {

@@ -9,34 +9,39 @@ Ext.define('App.view.material.MaterialGrid', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.materialGrid',
     frame: false,
-    autoHeight : true,
-    layout:'fit',
+    autoHeight: true,
+    layout: 'fit',
+    viewConfig: {
+        enableTextSelection: true
+    },
     columns: [
         {
             xtype: 'rownumberer'
         },
         {
             xtype: 'checkcolumn',
-            width : 10
+            text: 'Active',
+            dataIndex: 'active',
+            width: 10
         },
         {
-            text: '物料编码', 
+            text: '物料编码',
             dataIndex: 'materialCode'
         },
         {
-            text: '物料描述', 
+            text: '物料描述',
             dataIndex: 'materialDesc'
         },
         {
-            text: '图片', 
+            text: '图片',
             dataIndex: 'imagUrl',
-            autoHeight : true,
-            renderer : function(value) {
-                if(value)
+            autoHeight: true,
+            renderer: function(value) {
+                if (value)
                     return '<img src =  ' + value + '></img>';
                 else
                     console.info(contextPath);
-                    return '<a target="_blank" href="http://localhost:8091/wms15/app/xopera/testAjax">' + '测试文件下载路径' + '</a>';
+                return '<a target="_blank" href="http://localhost:8091/wms15/app/xopera/testAjax">' + '测试文件下载路径' + '</a>';
             }
 //            ,
 //            listeners : { // 该项载入加载照片
@@ -63,27 +68,26 @@ Ext.define('App.view.material.MaterialGrid', {
         {
             xtype: 'toolbar',
             dock: 'top',
-            
             items: [
-                { 
-                    xtype: 'button', 
+                {
+                    xtype: 'button',
                     text: '添加数据',
-                    name:'add'
+                    name: 'add'
                 }
             ]
         },
         {
             xtype: 'pagingtoolbar',
-            store: 'MaterialStore',   // same store GridPanel is using
+            store: 'MaterialStore', // same store GridPanel is using
             dock: 'bottom',
             displayInfo: true
         },
         {
             xtype: 'pagingtoolbar',
-            store: 'MaterialStore',   // same store GridPanel is using
+            store: 'MaterialStore', // same store GridPanel is using
             dock: 'top',
             displayInfo: true
         }
-        
+
     ]
 });
